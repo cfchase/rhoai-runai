@@ -1,0 +1,23 @@
+﻿kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  name: runai-cchase-dsp
+  labels:
+    kubernetes.io/metadata.name: runai-cchase-dsp
+    opendatahub.io/dashboard: 'true'
+    openshift-pipelines.tekton.dev/namespace-reconcile-version: 1.13.1
+    pod-security.kubernetes.io/audit: privileged
+    pod-security.kubernetes.io/audit-version: v1.24
+    pod-security.kubernetes.io/warn: privileged
+    pod-security.kubernetes.io/warn-version: v1.24
+    runai/queue: cchase-dsp
+  annotations:
+    openshift.io/description: ''
+    openshift.io/display-name: Runai cchase dsp
+    openshift.io/requester: cchase@redhat.com
+    openshift.io/sa.scc.mcs: 's0:c38,c22'
+    openshift.io/sa.scc.supplemental-groups: 1001450000/10000
+    openshift.io/sa.scc.uid-range: 1001450000/10000
+spec:
+  finalizers:
+    - kubernetes

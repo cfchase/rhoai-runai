@@ -1,0 +1,692 @@
+﻿kind: Pod
+apiVersion: v1
+metadata:
+  generateName: workbench-
+  annotations:
+    openshift.io/scc: restricted-v2
+    pod-group-name: pg-workbench-44706dcd-f977-41cc-985f-db240298ebaa
+    runai-allocated-gpu-memory: '11514'
+    gpu-fraction: '0.5'
+    runai-job-id: 44706dcd-f977-41cc-985f-db240298ebaa
+    k8s.ovn.org/pod-networks: >-
+      {"default":{"ip_addresses":["10.128.192.118/23"],"mac_address":"0a:58:0a:80:c0:76","gateway_ips":["10.128.192.1"],"ip_address":"10.128.192.118/23","gateway_ip":"10.128.192.1"}}
+    runai-calculated-status: Running
+    runai-allocated-gpus: '0.5'
+    allowForeignK8sResource: 'true'
+    runai-allocated-mig-gpus: '0'
+    received-resource-type: Fraction
+    cluster-autoscaler.kubernetes.io/safe-to-evict: 'false'
+    seccomp.security.alpha.kubernetes.io/pod: runtime/default
+    k8s.v1.cni.cncf.io/network-status: |-
+      [{
+          "name": "ovn-kubernetes",
+          "interface": "eth0",
+          "ips": [
+              "10.128.192.118"
+          ],
+          "mac": "0a:58:0a:80:c0:76",
+          "default": true,
+          "dns": {}
+      }]
+    runai-node: ip-10-0-151-101.ec2.internal
+  resourceVersion: '460815149'
+  name: workbench-0
+  uid: 58e58604-020d-4030-8996-131906e95912
+  creationTimestamp: '2024-02-14T20:48:19Z'
+  managedFields:
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-14T20:48:19Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:generateName': {}
+          'f:labels':
+            'f:statefulset.kubernetes.io/pod-name': {}
+            'f:statefulset': {}
+            'f:controller-revision-hash': {}
+            'f:notebook-name': {}
+            'f:opendatahub.io/dashboard': {}
+            'f:app': {}
+            .: {}
+            'f:opendatahub.io/user': {}
+            'f:opendatahub.io/odh-managed': {}
+          'f:ownerReferences':
+            .: {}
+            'k:{"uid":"4a2c7bcb-ed86-498a-b4c1-36d1faa3a632"}': {}
+        'f:spec':
+          'f:volumes':
+            .: {}
+            'k:{"name":"oauth-config"}':
+              .: {}
+              'f:name': {}
+              'f:secret':
+                .: {}
+                'f:defaultMode': {}
+                'f:secretName': {}
+            'k:{"name":"shm"}':
+              .: {}
+              'f:emptyDir':
+                .: {}
+                'f:medium': {}
+              'f:name': {}
+            'k:{"name":"tls-certificates"}':
+              .: {}
+              'f:name': {}
+              'f:secret':
+                .: {}
+                'f:defaultMode': {}
+                'f:secretName': {}
+            'k:{"name":"workbench"}':
+              .: {}
+              'f:name': {}
+              'f:persistentVolumeClaim':
+                .: {}
+                'f:claimName': {}
+          'f:containers':
+            'k:{"name":"oauth-proxy"}':
+              'f:image': {}
+              'f:volumeMounts':
+                .: {}
+                'k:{"mountPath":"/etc/oauth/config"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                'k:{"mountPath":"/etc/tls/private"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+              'f:terminationMessagePolicy': {}
+              .: {}
+              'f:resources':
+                .: {}
+                'f:limits':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+                'f:requests':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+              'f:args': {}
+              'f:livenessProbe':
+                .: {}
+                'f:failureThreshold': {}
+                'f:httpGet':
+                  .: {}
+                  'f:path': {}
+                  'f:port': {}
+                  'f:scheme': {}
+                'f:initialDelaySeconds': {}
+                'f:periodSeconds': {}
+                'f:successThreshold': {}
+                'f:timeoutSeconds': {}
+              'f:env':
+                .: {}
+                'k:{"name":"NAMESPACE"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:fieldRef': {}
+              'f:readinessProbe':
+                .: {}
+                'f:failureThreshold': {}
+                'f:httpGet':
+                  .: {}
+                  'f:path': {}
+                  'f:port': {}
+                  'f:scheme': {}
+                'f:initialDelaySeconds': {}
+                'f:periodSeconds': {}
+                'f:successThreshold': {}
+                'f:timeoutSeconds': {}
+              'f:terminationMessagePath': {}
+              'f:imagePullPolicy': {}
+              'f:ports':
+                .: {}
+                'k:{"containerPort":8443,"protocol":"TCP"}':
+                  .: {}
+                  'f:containerPort': {}
+                  'f:name': {}
+                  'f:protocol': {}
+              'f:name': {}
+            'k:{"name":"workbench"}':
+              'f:image': {}
+              'f:volumeMounts':
+                .: {}
+                'k:{"mountPath":"/dev/shm"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                'k:{"mountPath":"/opt/app-root/src"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+              'f:terminationMessagePolicy': {}
+              .: {}
+              'f:workingDir': {}
+              'f:resources':
+                .: {}
+                'f:limits':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+                'f:requests':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+              'f:livenessProbe':
+                .: {}
+                'f:failureThreshold': {}
+                'f:httpGet':
+                  .: {}
+                  'f:path': {}
+                  'f:port': {}
+                  'f:scheme': {}
+                'f:initialDelaySeconds': {}
+                'f:periodSeconds': {}
+                'f:successThreshold': {}
+                'f:timeoutSeconds': {}
+              'f:env':
+                .: {}
+                'k:{"name":"JUPYTER_IMAGE"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"NB_PREFIX"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"NOTEBOOK_ARGS"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"RUNAI_GPU_FRACTION"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"RUNAI_PROJECT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+              'f:readinessProbe':
+                .: {}
+                'f:failureThreshold': {}
+                'f:httpGet':
+                  .: {}
+                  'f:path': {}
+                  'f:port': {}
+                  'f:scheme': {}
+                'f:initialDelaySeconds': {}
+                'f:periodSeconds': {}
+                'f:successThreshold': {}
+                'f:timeoutSeconds': {}
+              'f:terminationMessagePath': {}
+              'f:imagePullPolicy': {}
+              'f:ports':
+                .: {}
+                'k:{"containerPort":8888,"protocol":"TCP"}':
+                  .: {}
+                  'f:containerPort': {}
+                  'f:name': {}
+                  'f:protocol': {}
+              'f:name': {}
+          'f:hostname': {}
+          'f:dnsPolicy': {}
+          'f:tolerations': {}
+          'f:serviceAccount': {}
+          'f:restartPolicy': {}
+          'f:schedulerName': {}
+          'f:terminationGracePeriodSeconds': {}
+          'f:serviceAccountName': {}
+          'f:enableServiceLinks': {}
+          'f:securityContext': {}
+          'f:affinity': {}
+    - manager: manager
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-14T20:48:19Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:pod-group-name': {}
+            'f:runai-job-id': {}
+    - manager: kube-batch
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-14T20:48:39Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:received-resource-type': {}
+            'f:runai-node': {}
+          'f:labels':
+            'f:runai-gpu-group': {}
+    - manager: ip-10-0-211-201
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-14T20:48:40Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:k8s.ovn.org/pod-networks': {}
+    - manager: multus
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-14T20:48:42Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:k8s.v1.cni.cncf.io/network-status': {}
+      subresource: status
+    - manager: status-updater
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-14T20:48:44Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:runai-allocated-gpu-memory': {}
+            'f:runai-allocated-gpus': {}
+            'f:runai-allocated-mig-gpus': {}
+            'f:runai-calculated-status': {}
+    - manager: kubelet
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-14T20:48:57Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:conditions':
+            'k:{"type":"ContainersReady"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Initialized"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Ready"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+          'f:containerStatuses': {}
+          'f:hostIP': {}
+          'f:phase': {}
+          'f:podIP': {}
+          'f:podIPs':
+            .: {}
+            'k:{"ip":"10.128.192.118"}':
+              .: {}
+              'f:ip': {}
+          'f:startTime': {}
+      subresource: status
+  namespace: runai-cchase-dsp
+  ownerReferences:
+    - apiVersion: apps/v1
+      kind: StatefulSet
+      name: workbench
+      uid: 4a2c7bcb-ed86-498a-b4c1-36d1faa3a632
+      controller: true
+      blockOwnerDeletion: true
+  labels:
+    app: workbench
+    runai-gpu-group: 79a50399-0f5e-4ccb-bd07-aea92612db72
+    opendatahub.io/user: cchase-40redhat-2ecom
+    opendatahub.io/odh-managed: 'true'
+    statefulset.kubernetes.io/pod-name: workbench-0
+    controller-revision-hash: workbench-684886bd6c
+    statefulset: workbench
+    opendatahub.io/dashboard: 'true'
+    project: cchase-dsp
+    notebook-name: workbench
+    priorityClassName: build
+spec:
+  restartPolicy: Always
+  serviceAccountName: workbench
+  imagePullSecrets:
+    - name: workbench-dockercfg-x2lbs
+  priority: 0
+  schedulerName: runai-scheduler
+  enableServiceLinks: false
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: runai/node-pool
+                operator: DoesNotExist
+  terminationGracePeriodSeconds: 30
+  preemptionPolicy: PreemptLowerPriority
+  nodeName: ip-10-0-151-101.ec2.internal
+  securityContext:
+    seLinuxOptions:
+      level: 's0:c38,c22'
+    fsGroup: 1001450000
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+    - resources:
+        limits:
+          cpu: '4'
+          memory: 8Gi
+        requests:
+          cpu: '1'
+          memory: 8Gi
+      readinessProbe:
+        httpGet:
+          path: /notebook/runai-cchase-dsp/workbench/api
+          port: notebook-port
+          scheme: HTTP
+        initialDelaySeconds: 10
+        timeoutSeconds: 1
+        periodSeconds: 5
+        successThreshold: 1
+        failureThreshold: 3
+      terminationMessagePath: /dev/termination-log
+      name: workbench
+      livenessProbe:
+        httpGet:
+          path: /notebook/runai-cchase-dsp/workbench/api
+          port: notebook-port
+          scheme: HTTP
+        initialDelaySeconds: 10
+        timeoutSeconds: 1
+        periodSeconds: 5
+        successThreshold: 1
+        failureThreshold: 3
+      env:
+        - name: RUNAI_PROJECT
+          value: cchase-dsp
+        - name: RUNAI_GPU_FRACTION
+          value: '0.5'
+        - name: NOTEBOOK_ARGS
+          value: |-
+            --ServerApp.port=8888
+                              --ServerApp.token=''
+                              --ServerApp.password=''
+                              --ServerApp.base_url=/notebook/runai-cchase-dsp/workbench
+                              --ServerApp.quit_button=False
+                              --ServerApp.tornado_settings={"user":"cchase-40redhat-2ecom","hub_host":"https://rhods-dashboard-redhat-ods-applications.apps.aisrhods-wx.8goc.p1.openshiftapps.com","hub_prefix":"/projects/runai-cchase-dsp"}
+        - name: JUPYTER_IMAGE
+          value: >-
+            image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/pytorch:2023.2
+        - name: NB_PREFIX
+          value: /notebook/runai-cchase-dsp/workbench
+        - name: RUNAI_GPU_MEMORY_REQUEST
+          value: '0.50'
+        - name: RUNAI_GPU_MEMORY_LIMIT
+          value: '0.50'
+        - name: NVIDIA_VISIBLE_DEVICES
+          valueFrom:
+            configMapKeyRef:
+              name: workbench-mvxdbk9-runai-sh-gpu
+              key: RUNAI-VISIBLE-DEVICES
+        - name: RUNAI_NUM_OF_GPUS
+          valueFrom:
+            configMapKeyRef:
+              name: workbench-mvxdbk9-runai-sh-gpu
+              key: RUNAI_NUM_OF_GPUS
+        - name: jobUUID
+          value: 4a2c7bcb-ed86-498a-b4c1-36d1faa3a632
+        - name: JOB_UUID
+          value: 4a2c7bcb-ed86-498a-b4c1-36d1faa3a632
+        - name: jobName
+          value: workbench
+        - name: JOB_NAME
+          value: workbench
+        - name: reporterGatewayURL
+          value: 'runai-prometheus-pushgateway.runai.svc.cluster.local:9091'
+        - name: REPORTER_GATEWAY_URL
+          value: 'runai-prometheus-pushgateway.runai.svc.cluster.local:9091'
+        - name: podUUID
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.uid
+        - name: POD_UUID
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.uid
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+      securityContext:
+        capabilities:
+          drop:
+            - ALL
+        runAsUser: 1001450000
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false
+      ports:
+        - name: notebook-port
+          containerPort: 8888
+          protocol: TCP
+      imagePullPolicy: Always
+      volumeMounts:
+        - name: workbench
+          mountPath: /opt/app-root/src
+        - name: shm
+          mountPath: /dev/shm
+        - name: kube-api-access-7d4f6
+          readOnly: true
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        - name: workbench-mvxdbk9-runai-sh-gpu-vol
+          readOnly: true
+          mountPath: /etc/ld.so.preload
+          subPath: ld.so.preload-key
+        - name: workbench-mvxdbk9-runai-sh-gpu-vol
+          readOnly: true
+          mountPath: /etc/runai.d/memory
+          subPath: config
+        - name: workbench-mvxdbk9-runai-sh-gpu-vol
+          readOnly: true
+          mountPath: /etc/runai.d/pod_uuid
+          subPath: pod-uuid
+      terminationMessagePolicy: File
+      image: >-
+        image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/pytorch:2023.2
+      workingDir: /opt/app-root/src
+    - resources:
+        limits:
+          cpu: 100m
+          memory: 64Mi
+        requests:
+          cpu: 100m
+          memory: 64Mi
+      readinessProbe:
+        httpGet:
+          path: /oauth/healthz
+          port: oauth-proxy
+          scheme: HTTPS
+        initialDelaySeconds: 5
+        timeoutSeconds: 1
+        periodSeconds: 5
+        successThreshold: 1
+        failureThreshold: 3
+      terminationMessagePath: /dev/termination-log
+      name: oauth-proxy
+      livenessProbe:
+        httpGet:
+          path: /oauth/healthz
+          port: oauth-proxy
+          scheme: HTTPS
+        initialDelaySeconds: 30
+        timeoutSeconds: 1
+        periodSeconds: 5
+        successThreshold: 1
+        failureThreshold: 3
+      env:
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+      securityContext:
+        capabilities:
+          drop:
+            - ALL
+        runAsUser: 1001450000
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false
+      ports:
+        - name: oauth-proxy
+          containerPort: 8443
+          protocol: TCP
+      imagePullPolicy: Always
+      volumeMounts:
+        - name: oauth-config
+          mountPath: /etc/oauth/config
+        - name: tls-certificates
+          mountPath: /etc/tls/private
+        - name: kube-api-access-7d4f6
+          readOnly: true
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      terminationMessagePolicy: File
+      image: >-
+        registry.redhat.io/openshift4/ose-oauth-proxy@sha256:4bef31eb993feb6f1096b51b4876c65a6fb1f4401fee97fa4f4542b6b7c9bc46
+      args:
+        - '--provider=openshift'
+        - '--https-address=:8443'
+        - '--http-address='
+        - '--openshift-service-account=workbench'
+        - '--cookie-secret-file=/etc/oauth/config/cookie_secret'
+        - '--cookie-expire=24h0m0s'
+        - '--tls-cert=/etc/tls/private/tls.crt'
+        - '--tls-key=/etc/tls/private/tls.key'
+        - '--upstream=http://localhost:8888'
+        - '--upstream-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
+        - '--email-domain=*'
+        - '--skip-provider-button'
+        - >-
+          --openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"workbench","namespace":"$(NAMESPACE)"}
+        - >-
+          --logout-url=https://rhods-dashboard-redhat-ods-applications.apps.aisrhods-wx.8goc.p1.openshiftapps.com/projects/runai-cchase-dsp?notebookLogout=workbench
+  hostname: workbench-0
+  serviceAccount: workbench
+  volumes:
+    - name: workbench
+      persistentVolumeClaim:
+        claimName: workbench
+    - name: shm
+      emptyDir:
+        medium: Memory
+    - name: oauth-config
+      secret:
+        secretName: workbench-oauth-config
+        defaultMode: 420
+    - name: tls-certificates
+      secret:
+        secretName: workbench-tls
+        defaultMode: 420
+    - name: kube-api-access-7d4f6
+      projected:
+        sources:
+          - serviceAccountToken:
+              expirationSeconds: 3607
+              path: token
+          - configMap:
+              name: kube-root-ca.crt
+              items:
+                - key: ca.crt
+                  path: ca.crt
+          - downwardAPI:
+              items:
+                - path: namespace
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+          - configMap:
+              name: openshift-service-ca.crt
+              items:
+                - key: service-ca.crt
+                  path: service-ca.crt
+        defaultMode: 420
+    - name: workbench-mvxdbk9-runai-sh-gpu-vol
+      configMap:
+        name: workbench-mvxdbk9-runai-sh-gpu
+        defaultMode: 420
+  dnsPolicy: ClusterFirst
+  tolerations:
+    - key: NotebooksOnly
+      operator: Exists
+      effect: NoSchedule
+    - key: node.kubernetes.io/not-ready
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
+    - key: node.kubernetes.io/unreachable
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
+    - key: node.kubernetes.io/memory-pressure
+      operator: Exists
+      effect: NoSchedule
+status:
+  phase: Running
+  conditions:
+    - type: Initialized
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2024-02-14T20:48:39Z'
+    - type: Ready
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2024-02-14T20:48:57Z'
+    - type: ContainersReady
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2024-02-14T20:48:57Z'
+    - type: PodScheduled
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2024-02-14T20:48:39Z'
+  hostIP: 10.0.151.101
+  podIP: 10.128.192.118
+  podIPs:
+    - ip: 10.128.192.118
+  startTime: '2024-02-14T20:48:39Z'
+  containerStatuses:
+    - restartCount: 0
+      started: true
+      ready: true
+      name: oauth-proxy
+      state:
+        running:
+          startedAt: '2024-02-14T20:48:43Z'
+      imageID: >-
+        registry.redhat.io/openshift4/ose-oauth-proxy@sha256:4bef31eb993feb6f1096b51b4876c65a6fb1f4401fee97fa4f4542b6b7c9bc46
+      image: >-
+        registry.redhat.io/openshift4/ose-oauth-proxy@sha256:4bef31eb993feb6f1096b51b4876c65a6fb1f4401fee97fa4f4542b6b7c9bc46
+      lastState: {}
+      containerID: 'cri-o://bdcb441effa7f19735c2dd727112064e74074a02253e28a383294d99737911a3'
+    - restartCount: 0
+      started: true
+      ready: true
+      name: workbench
+      state:
+        running:
+          startedAt: '2024-02-14T20:48:43Z'
+      imageID: >-
+        image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/pytorch@sha256:f3325770613a39833bb2041a2b681c2e9aa73e2aed8d82d7b5395f98e94ff7a4
+      image: >-
+        image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/pytorch:2023.2
+      lastState: {}
+      containerID: 'cri-o://214d5a530a959ddb15f4eb1ce8d18963b8f40d3596c7000a7494c43882c14052'
+  qosClass: Burstable

@@ -1,0 +1,170 @@
+﻿apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  annotations:
+    openshift.io/display-name: fraud
+    serving.knative.openshift.io/enablePassthrough: 'true'
+    sidecar.istio.io/inject: 'true'
+    sidecar.istio.io/rewriteAppHTTPProbers: 'true'
+  resourceVersion: '460691195'
+  name: fraud
+  uid: 57bcbdf5-50de-4b28-9252-1d7dc694bdf3
+  creationTimestamp: '2024-02-14T19:40:50Z'
+  generation: 1
+  managedFields:
+    - apiVersion: serving.kserve.io/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:openshift.io/display-name': {}
+            'f:serving.knative.openshift.io/enablePassthrough': {}
+            'f:sidecar.istio.io/inject': {}
+            'f:sidecar.istio.io/rewriteAppHTTPProbers': {}
+          'f:labels':
+            .: {}
+            'f:opendatahub.io/dashboard': {}
+        'f:spec':
+          .: {}
+          'f:predictor':
+            .: {}
+            'f:maxReplicas': {}
+            'f:minReplicas': {}
+            'f:model':
+              .: {}
+              'f:modelFormat':
+                .: {}
+                'f:name': {}
+                'f:version': {}
+              'f:resources':
+                .: {}
+                'f:limits': {}
+                'f:requests': {}
+              'f:runtime': {}
+              'f:storage':
+                .: {}
+                'f:key': {}
+                'f:path': {}
+      manager: unknown
+      operation: Update
+      time: '2024-02-14T19:40:43Z'
+    - apiVersion: serving.kserve.io/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:finalizers':
+            .: {}
+            'v:"inferenceservice.finalizers"': {}
+      manager: manager
+      operation: Update
+      time: '2024-02-14T19:40:50Z'
+    - apiVersion: serving.kserve.io/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          .: {}
+          'f:address':
+            .: {}
+            'f:url': {}
+          'f:components':
+            .: {}
+            'f:predictor':
+              .: {}
+              'f:address':
+                .: {}
+                'f:url': {}
+              'f:latestCreatedRevision': {}
+              'f:latestReadyRevision': {}
+              'f:latestRolledoutRevision': {}
+              'f:traffic': {}
+              'f:url': {}
+          'f:conditions': {}
+          'f:modelStatus':
+            .: {}
+            'f:copies':
+              .: {}
+              'f:failedCopies': {}
+              'f:totalCopies': {}
+            'f:states':
+              .: {}
+              'f:activeModelState': {}
+              'f:targetModelState': {}
+            'f:transitionStatus': {}
+          'f:observedGeneration': {}
+          'f:url': {}
+      manager: manager
+      operation: Update
+      subresource: status
+      time: '2024-02-14T19:42:31Z'
+  namespace: fraud-detection
+  finalizers:
+    - inferenceservice.finalizers
+  labels:
+    opendatahub.io/dashboard: 'true'
+spec:
+  predictor:
+    maxReplicas: 1
+    minReplicas: 1
+    model:
+      modelFormat:
+        name: onnx
+        version: '1'
+      name: ''
+      resources: {}
+      runtime: fraud
+      storage:
+        key: aws-connection-my-storage
+        path: models/fraud
+status:
+  address:
+    url: 'http://fraud.fraud-detection.svc.cluster.local'
+  components:
+    predictor:
+      address:
+        url: 'http://fraud-predictor.fraud-detection.svc.cluster.local'
+      latestCreatedRevision: fraud-predictor-00001
+      latestReadyRevision: fraud-predictor-00001
+      latestRolledoutRevision: fraud-predictor-00001
+      traffic:
+        - latestRevision: true
+          percent: 100
+          revisionName: fraud-predictor-00001
+      url: >-
+        https://fraud-predictor-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com
+  conditions:
+    - lastTransitionTime: '2024-02-14T19:42:31Z'
+      status: 'True'
+      type: IngressReady
+    - lastTransitionTime: '2024-02-14T19:42:31Z'
+      severity: Info
+      status: 'True'
+      type: LatestDeploymentReady
+    - lastTransitionTime: '2024-02-14T19:42:31Z'
+      severity: Info
+      status: 'True'
+      type: PredictorConfigurationReady
+    - lastTransitionTime: '2024-02-14T19:42:31Z'
+      status: 'True'
+      type: PredictorReady
+    - lastTransitionTime: '2024-02-14T19:42:31Z'
+      severity: Info
+      status: 'True'
+      type: PredictorRouteReady
+    - lastTransitionTime: '2024-02-14T19:42:31Z'
+      status: 'True'
+      type: Ready
+    - lastTransitionTime: '2024-02-14T19:42:31Z'
+      severity: Info
+      status: 'True'
+      type: RoutesReady
+  modelStatus:
+    copies:
+      failedCopies: 0
+      totalCopies: 1
+    states:
+      activeModelState: Loaded
+      targetModelState: Loaded
+    transitionStatus: UpToDate
+  observedGeneration: 1
+  url: 'https://fraud-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com'

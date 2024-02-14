@@ -1,0 +1,285 @@
+﻿apiVersion: kubeflow.org/v1
+kind: Notebook
+metadata:
+  annotations:
+    notebooks.opendatahub.io/inject-oauth: 'true'
+    opendatahub.io/image-display-name: PyTorch
+    runai-total-requested-gpus-memory: '0'
+    runai-calculated-status: Running
+    notebooks.opendatahub.io/oauth-logout-url: >-
+      https://rhods-dashboard-redhat-ods-applications.apps.aisrhods-wx.8goc.p1.openshiftapps.com/projects/runai-cchase-dsp?notebookLogout=workbench
+    opendatahub.io/accelerator-name: ''
+    openshift.io/description: ''
+    openshift.io/display-name: Workbench
+    notebooks.opendatahub.io/last-image-selection: 'pytorch:2023.2'
+    runai-total-requested-gpus: '0.5'
+    runai-podgroup-requested-gpus-memory: '0'
+    notebooks.opendatahub.io/last-size-selection: Small
+    opendatahub.io/username: cchase@redhat.com
+    runai-current-allocated-gpus-memory: '11514'
+    runai-current-requested-gpus: '0.5'
+    runai-running-pods: '1'
+    runai-current-requested-gpus-memory: '0'
+    runai-current-allocated-gpus: '0.5'
+    runai-used-nodes: ip-10-0-151-101.ec2.internal
+    runai-pending-pods: '0'
+    runai-podgroup-requested-gpus: '0.5'
+  resourceVersion: '460815158'
+  name: workbench
+  uid: 44706dcd-f977-41cc-985f-db240298ebaa
+  creationTimestamp: '2024-02-14T20:16:25Z'
+  generation: 5
+  managedFields:
+    - apiVersion: kubeflow.org/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:notebooks.opendatahub.io/last-size-selection': {}
+            'f:notebooks.opendatahub.io/inject-oauth': {}
+            .: {}
+            'f:opendatahub.io/image-display-name': {}
+            'f:notebooks.opendatahub.io/oauth-logout-url': {}
+            'f:opendatahub.io/accelerator-name': {}
+            'f:notebooks.opendatahub.io/last-image-selection': {}
+            'f:openshift.io/display-name': {}
+            'f:openshift.io/description': {}
+            'f:opendatahub.io/username': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:opendatahub.io/dashboard': {}
+            'f:opendatahub.io/odh-managed': {}
+            'f:opendatahub.io/user': {}
+        'f:spec':
+          .: {}
+          'f:template':
+            .: {}
+            'f:spec':
+              .: {}
+              'f:affinity': {}
+              'f:enableServiceLinks': {}
+              'f:tolerations': {}
+              'f:volumes': {}
+      manager: unknown
+      operation: Update
+      time: '2024-02-14T20:43:57Z'
+    - apiVersion: kubeflow.org/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:template':
+            'f:spec':
+              'f:containers': {}
+      manager: Mozilla
+      operation: Update
+      time: '2024-02-14T20:48:17Z'
+    - apiVersion: kubeflow.org/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:runai-podgroup-requested-gpus-memory': {}
+            'f:runai-current-requested-gpus-memory': {}
+            'f:runai-current-requested-gpus': {}
+            'f:runai-running-pods': {}
+            'f:runai-podgroup-requested-gpus': {}
+            'f:runai-current-allocated-gpus': {}
+            'f:runai-used-nodes': {}
+            'f:runai-total-requested-gpus-memory': {}
+            'f:runai-pending-pods': {}
+            'f:runai-calculated-status': {}
+            'f:runai-total-requested-gpus': {}
+            'f:runai-current-allocated-gpus-memory': {}
+      manager: status-updater
+      operation: Update
+      time: '2024-02-14T20:48:44Z'
+    - apiVersion: kubeflow.org/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          .: {}
+          'f:conditions': {}
+          'f:containerState':
+            .: {}
+            'f:running':
+              .: {}
+              'f:startedAt': {}
+          'f:readyReplicas': {}
+      manager: manager
+      operation: Update
+      subresource: status
+      time: '2024-02-14T20:48:57Z'
+  namespace: runai-cchase-dsp
+  labels:
+    app: workbench
+    opendatahub.io/dashboard: 'true'
+    opendatahub.io/odh-managed: 'true'
+    opendatahub.io/user: cchase-40redhat-2ecom
+spec:
+  template:
+    spec:
+      affinity: {}
+      containers:
+        - resources:
+            limits:
+              cpu: '4'
+              memory: 8Gi
+            requests:
+              cpu: '1'
+              memory: 8Gi
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /notebook/runai-cchase-dsp/workbench/api
+              port: notebook-port
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: workbench
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /notebook/runai-cchase-dsp/workbench/api
+              port: notebook-port
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          env:
+            - name: RUNAI_PROJECT
+              value: cchase-dsp
+            - name: RUNAI_GPU_FRACTION
+              value: '0.5'
+            - name: NOTEBOOK_ARGS
+              value: |-
+                --ServerApp.port=8888
+                                  --ServerApp.token=''
+                                  --ServerApp.password=''
+                                  --ServerApp.base_url=/notebook/runai-cchase-dsp/workbench
+                                  --ServerApp.quit_button=False
+                                  --ServerApp.tornado_settings={"user":"cchase-40redhat-2ecom","hub_host":"https://rhods-dashboard-redhat-ods-applications.apps.aisrhods-wx.8goc.p1.openshiftapps.com","hub_prefix":"/projects/runai-cchase-dsp"}
+            - name: JUPYTER_IMAGE
+              value: >-
+                image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/pytorch:2023.2
+          ports:
+            - containerPort: 8888
+              name: notebook-port
+              protocol: TCP
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /opt/app-root/src
+              name: workbench
+            - mountPath: /dev/shm
+              name: shm
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/pytorch:2023.2
+          workingDir: /opt/app-root/src
+        - resources:
+            limits:
+              cpu: 100m
+              memory: 64Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /oauth/healthz
+              port: oauth-proxy
+              scheme: HTTPS
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: oauth-proxy
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /oauth/healthz
+              port: oauth-proxy
+              scheme: HTTPS
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          env:
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          ports:
+            - containerPort: 8443
+              name: oauth-proxy
+              protocol: TCP
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /etc/oauth/config
+              name: oauth-config
+            - mountPath: /etc/tls/private
+              name: tls-certificates
+          image: >-
+            registry.redhat.io/openshift4/ose-oauth-proxy@sha256:4bef31eb993feb6f1096b51b4876c65a6fb1f4401fee97fa4f4542b6b7c9bc46
+          args:
+            - '--provider=openshift'
+            - '--https-address=:8443'
+            - '--http-address='
+            - '--openshift-service-account=workbench'
+            - '--cookie-secret-file=/etc/oauth/config/cookie_secret'
+            - '--cookie-expire=24h0m0s'
+            - '--tls-cert=/etc/tls/private/tls.crt'
+            - '--tls-key=/etc/tls/private/tls.key'
+            - '--upstream=http://localhost:8888'
+            - '--upstream-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
+            - '--email-domain=*'
+            - '--skip-provider-button'
+            - >-
+              --openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"workbench","namespace":"$(NAMESPACE)"}
+            - >-
+              --logout-url=https://rhods-dashboard-redhat-ods-applications.apps.aisrhods-wx.8goc.p1.openshiftapps.com/projects/runai-cchase-dsp?notebookLogout=workbench
+      enableServiceLinks: false
+      serviceAccountName: workbench
+      tolerations:
+        - effect: NoSchedule
+          key: NotebooksOnly
+          operator: Exists
+      volumes:
+        - name: workbench
+          persistentVolumeClaim:
+            claimName: workbench
+        - emptyDir:
+            medium: Memory
+          name: shm
+        - name: oauth-config
+          secret:
+            defaultMode: 420
+            secretName: workbench-oauth-config
+        - name: tls-certificates
+          secret:
+            defaultMode: 420
+            secretName: workbench-tls
+status:
+  conditions:
+    - lastProbeTime: '2024-02-14T20:48:57Z'
+      lastTransitionTime: '2024-02-14T20:48:39Z'
+      status: 'True'
+      type: Initialized
+    - lastProbeTime: '2024-02-14T20:48:57Z'
+      lastTransitionTime: '2024-02-14T20:48:57Z'
+      status: 'True'
+      type: Ready
+    - lastProbeTime: '2024-02-14T20:48:57Z'
+      lastTransitionTime: '2024-02-14T20:48:57Z'
+      status: 'True'
+      type: ContainersReady
+    - lastProbeTime: '2024-02-14T20:48:57Z'
+      lastTransitionTime: '2024-02-14T20:48:39Z'
+      status: 'True'
+      type: PodScheduled
+  containerState:
+    running:
+      startedAt: '2024-02-14T20:48:43Z'
+  readyReplicas: 1

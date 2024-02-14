@@ -1,0 +1,86 @@
+﻿kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  name: fraud-detection
+  uid: 2f478ee9-1748-45b3-a0cd-2b687623a458
+  resourceVersion: '460070250'
+  creationTimestamp: '2024-02-14T14:07:17Z'
+  labels:
+    kubernetes.io/metadata.name: fraud-detection
+    opendatahub.io/dashboard: 'true'
+    openshift-pipelines.tekton.dev/namespace-reconcile-version: 1.13.1
+    pod-security.kubernetes.io/audit: baseline
+    pod-security.kubernetes.io/audit-version: v1.24
+    pod-security.kubernetes.io/warn: baseline
+    pod-security.kubernetes.io/warn-version: v1.24
+  annotations:
+    openshift.io/description: ''
+    openshift.io/display-name: Fraud Detection
+    openshift.io/requester: cchase@redhat.com
+    openshift.io/sa.scc.mcs: 's0:c38,c17'
+    openshift.io/sa.scc.supplemental-groups: 1001440000/10000
+    openshift.io/sa.scc.uid-range: 1001440000/10000
+  managedFields:
+    - manager: openshift-apiserver
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-14T14:07:17Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:openshift.io/description': {}
+            'f:openshift.io/display-name': {}
+            'f:openshift.io/requester': {}
+          'f:labels':
+            .: {}
+            'f:kubernetes.io/metadata.name': {}
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-14T14:07:17Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:finalizers': {}
+      subresource: finalize
+    - manager: unknown
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-14T14:07:17Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            'f:opendatahub.io/dashboard': {}
+    - manager: cluster-policy-controller
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-14T14:07:19Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:openshift.io/sa.scc.mcs': {}
+            'f:openshift.io/sa.scc.supplemental-groups': {}
+            'f:openshift.io/sa.scc.uid-range': {}
+          'f:labels':
+            'f:pod-security.kubernetes.io/audit': {}
+            'f:pod-security.kubernetes.io/audit-version': {}
+            'f:pod-security.kubernetes.io/warn': {}
+            'f:pod-security.kubernetes.io/warn-version': {}
+    - manager: openshift-pipelines-operator
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-14T14:07:21Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            'f:openshift-pipelines.tekton.dev/namespace-reconcile-version': {}
+spec:
+  finalizers:
+    - kubernetes
+status:
+  phase: Active

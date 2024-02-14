@@ -1,0 +1,175 @@
+﻿apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  annotations:
+    serving.knative.dev/creator: 'system:serviceaccount:redhat-ods-applications:kserve-controller-manager'
+    serving.knative.dev/lastModifier: 'system:serviceaccount:redhat-ods-applications:kserve-controller-manager'
+    serving.knative.openshift.io/enablePassthrough: 'true'
+  resourceVersion: '460691187'
+  name: fraud-predictor
+  uid: 432bb37c-8499-4467-b8dc-cb87b4e3f50d
+  creationTimestamp: '2024-02-14T19:40:56Z'
+  generation: 1
+  managedFields:
+    - apiVersion: serving.knative.dev/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:serving.knative.openshift.io/enablePassthrough': {}
+          'f:labels':
+            .: {}
+            'f:component': {}
+            'f:opendatahub.io/dashboard': {}
+            'f:serving.kserve.io/inferenceservice': {}
+          'f:ownerReferences':
+            .: {}
+            'k:{"uid":"57bcbdf5-50de-4b28-9252-1d7dc694bdf3"}': {}
+        'f:spec':
+          .: {}
+          'f:template':
+            .: {}
+            'f:metadata':
+              .: {}
+              'f:annotations':
+                'f:autoscaling.knative.dev/class': {}
+                'f:internal.serving.kserve.io/storage-spec': {}
+                .: {}
+                'f:sidecar.istio.io/rewriteAppHTTPProbers': {}
+                'f:prometheus.kserve.io/port': {}
+                'f:autoscaling.knative.dev/max-scale': {}
+                'f:prometheus.kserve.io/path': {}
+                'f:openshift.io/display-name': {}
+                'f:internal.serving.kserve.io/storage-initializer-sourceuri': {}
+                'f:sidecar.istio.io/inject': {}
+                'f:internal.serving.kserve.io/storage-spec-key': {}
+                'f:autoscaling.knative.dev/min-scale': {}
+              'f:creationTimestamp': {}
+              'f:labels':
+                .: {}
+                'f:component': {}
+                'f:opendatahub.io/dashboard': {}
+                'f:serving.kserve.io/inferenceservice': {}
+            'f:spec':
+              .: {}
+              'f:containerConcurrency': {}
+              'f:containers': {}
+              'f:timeoutSeconds': {}
+              'f:volumes': {}
+          'f:traffic': {}
+      manager: manager
+      operation: Update
+      time: '2024-02-14T19:40:56Z'
+    - apiVersion: serving.knative.dev/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          .: {}
+          'f:address':
+            .: {}
+            'f:url': {}
+          'f:conditions': {}
+          'f:latestCreatedRevisionName': {}
+          'f:latestReadyRevisionName': {}
+          'f:observedGeneration': {}
+          'f:traffic': {}
+          'f:url': {}
+      manager: controller
+      operation: Update
+      subresource: status
+      time: '2024-02-14T19:42:31Z'
+  namespace: fraud-detection
+  ownerReferences:
+    - apiVersion: serving.kserve.io/v1beta1
+      blockOwnerDeletion: true
+      controller: true
+      kind: InferenceService
+      name: fraud
+      uid: 57bcbdf5-50de-4b28-9252-1d7dc694bdf3
+  labels:
+    component: predictor
+    opendatahub.io/dashboard: 'true'
+    serving.kserve.io/inferenceservice: fraud
+spec:
+  template:
+    metadata:
+      annotations:
+        internal.serving.kserve.io/storage-initializer-sourceuri: '<scheme-placeholder>://models/fraud'
+        prometheus.kserve.io/port: '8888'
+        autoscaling.knative.dev/max-scale: '1'
+        prometheus.kserve.io/path: /metrics
+        openshift.io/display-name: fraud
+        sidecar.istio.io/inject: 'true'
+        internal.serving.kserve.io/storage-spec-key: aws-connection-my-storage
+        autoscaling.knative.dev/min-scale: '1'
+        sidecar.istio.io/rewriteAppHTTPProbers: 'true'
+        autoscaling.knative.dev/class: kpa.autoscaling.knative.dev
+        internal.serving.kserve.io/storage-spec: 'true'
+      creationTimestamp: null
+      labels:
+        component: predictor
+        opendatahub.io/dashboard: 'true'
+        serving.kserve.io/inferenceservice: fraud
+    spec:
+      containerConcurrency: 0
+      containers:
+        - args:
+            - '--model_name=fraud'
+            - '--port=8001'
+            - '--rest_port=8888'
+            - '--model_path=/mnt/models'
+            - '--file_system_poll_wait_seconds=0'
+            - '--grpc_bind_address=127.0.0.1'
+            - '--rest_bind_address=127.0.0.1'
+          image: 'quay.io/opendatahub/openvino_model_server:stable'
+          name: kserve-container
+          ports:
+            - containerPort: 8888
+              protocol: TCP
+          readinessProbe:
+            successThreshold: 1
+            tcpSocket:
+              port: 0
+          resources:
+            limits:
+              cpu: '2'
+              memory: 8Gi
+            requests:
+              cpu: '1'
+              memory: 4Gi
+          volumeMounts:
+            - mountPath: /dev/shm
+              name: shm
+      enableServiceLinks: false
+      timeoutSeconds: 300
+      volumes:
+        - emptyDir:
+            medium: Memory
+            sizeLimit: 2Gi
+          name: shm
+  traffic:
+    - latestRevision: true
+      percent: 100
+status:
+  address:
+    url: 'http://fraud-predictor.fraud-detection.svc.cluster.local'
+  conditions:
+    - lastTransitionTime: '2024-02-14T19:42:31Z'
+      status: 'True'
+      type: ConfigurationsReady
+    - lastTransitionTime: '2024-02-14T19:42:31Z'
+      status: 'True'
+      type: Ready
+    - lastTransitionTime: '2024-02-14T19:42:31Z'
+      status: 'True'
+      type: RoutesReady
+  latestCreatedRevisionName: fraud-predictor-00001
+  latestReadyRevisionName: fraud-predictor-00001
+  observedGeneration: 1
+  traffic:
+    - latestRevision: true
+      percent: 100
+      revisionName: fraud-predictor-00001
+  url: >-
+    https://fraud-predictor-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com
