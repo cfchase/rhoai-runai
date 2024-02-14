@@ -24,92 +24,7 @@ metadata:
     runai-used-nodes: ip-10-0-151-101.ec2.internal
     runai-pending-pods: '0'
     runai-podgroup-requested-gpus: '0.5'
-  resourceVersion: '460815158'
   name: workbench
-  uid: 44706dcd-f977-41cc-985f-db240298ebaa
-  creationTimestamp: '2024-02-14T20:16:25Z'
-  generation: 5
-  managedFields:
-    - apiVersion: kubeflow.org/v1
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:metadata':
-          'f:annotations':
-            'f:notebooks.opendatahub.io/last-size-selection': {}
-            'f:notebooks.opendatahub.io/inject-oauth': {}
-            .: {}
-            'f:opendatahub.io/image-display-name': {}
-            'f:notebooks.opendatahub.io/oauth-logout-url': {}
-            'f:opendatahub.io/accelerator-name': {}
-            'f:notebooks.opendatahub.io/last-image-selection': {}
-            'f:openshift.io/display-name': {}
-            'f:openshift.io/description': {}
-            'f:opendatahub.io/username': {}
-          'f:labels':
-            .: {}
-            'f:app': {}
-            'f:opendatahub.io/dashboard': {}
-            'f:opendatahub.io/odh-managed': {}
-            'f:opendatahub.io/user': {}
-        'f:spec':
-          .: {}
-          'f:template':
-            .: {}
-            'f:spec':
-              .: {}
-              'f:affinity': {}
-              'f:enableServiceLinks': {}
-              'f:tolerations': {}
-              'f:volumes': {}
-      manager: unknown
-      operation: Update
-      time: '2024-02-14T20:43:57Z'
-    - apiVersion: kubeflow.org/v1
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:spec':
-          'f:template':
-            'f:spec':
-              'f:containers': {}
-      manager: Mozilla
-      operation: Update
-      time: '2024-02-14T20:48:17Z'
-    - apiVersion: kubeflow.org/v1beta1
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:metadata':
-          'f:annotations':
-            'f:runai-podgroup-requested-gpus-memory': {}
-            'f:runai-current-requested-gpus-memory': {}
-            'f:runai-current-requested-gpus': {}
-            'f:runai-running-pods': {}
-            'f:runai-podgroup-requested-gpus': {}
-            'f:runai-current-allocated-gpus': {}
-            'f:runai-used-nodes': {}
-            'f:runai-total-requested-gpus-memory': {}
-            'f:runai-pending-pods': {}
-            'f:runai-calculated-status': {}
-            'f:runai-total-requested-gpus': {}
-            'f:runai-current-allocated-gpus-memory': {}
-      manager: status-updater
-      operation: Update
-      time: '2024-02-14T20:48:44Z'
-    - apiVersion: kubeflow.org/v1beta1
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:status':
-          .: {}
-          'f:conditions': {}
-          'f:containerState':
-            .: {}
-            'f:running':
-              .: {}
-              'f:startedAt': {}
-          'f:readyReplicas': {}
-      manager: manager
-      operation: Update
-      subresource: status
-      time: '2024-02-14T20:48:57Z'
   namespace: runai-cchase-dsp
   labels:
     app: workbench
@@ -261,25 +176,3 @@ spec:
           secret:
             defaultMode: 420
             secretName: workbench-tls
-status:
-  conditions:
-    - lastProbeTime: '2024-02-14T20:48:57Z'
-      lastTransitionTime: '2024-02-14T20:48:39Z'
-      status: 'True'
-      type: Initialized
-    - lastProbeTime: '2024-02-14T20:48:57Z'
-      lastTransitionTime: '2024-02-14T20:48:57Z'
-      status: 'True'
-      type: Ready
-    - lastProbeTime: '2024-02-14T20:48:57Z'
-      lastTransitionTime: '2024-02-14T20:48:57Z'
-      status: 'True'
-      type: ContainersReady
-    - lastProbeTime: '2024-02-14T20:48:57Z'
-      lastTransitionTime: '2024-02-14T20:48:39Z'
-      status: 'True'
-      type: PodScheduled
-  containerState:
-    running:
-      startedAt: '2024-02-14T20:48:43Z'
-  readyReplicas: 1
