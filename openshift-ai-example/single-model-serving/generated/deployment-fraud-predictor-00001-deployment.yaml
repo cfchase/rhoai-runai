@@ -1,0 +1,658 @@
+﻿kind: Deployment
+apiVersion: apps/v1
+metadata:
+  annotations:
+    internal.serving.kserve.io/storage-initializer-sourceuri: '<scheme-placeholder>://models/fraud/'
+    prometheus.kserve.io/port: '8888'
+    serving.knative.dev/creator: 'system:serviceaccount:redhat-ods-applications:kserve-controller-manager'
+    deployment.kubernetes.io/revision: '1'
+    autoscaling.knative.dev/max-scale: '1'
+    prometheus.kserve.io/path: /metrics
+    openshift.io/display-name: fraud
+    sidecar.istio.io/inject: 'true'
+    internal.serving.kserve.io/storage-spec-key: aws-connection-my-storage
+    autoscaling.knative.dev/min-scale: '1'
+    sidecar.istio.io/rewriteAppHTTPProbers: 'true'
+    autoscaling.knative.dev/class: kpa.autoscaling.knative.dev
+    internal.serving.kserve.io/storage-spec: 'true'
+  resourceVersion: '484252190'
+  name: fraud-predictor-00001-deployment
+  uid: 369a54f4-d5ae-40b8-a1d7-cddfc88f626e
+  creationTimestamp: '2024-02-23T14:30:09Z'
+  generation: 1
+  managedFields:
+    - manager: controller
+      operation: Update
+      apiVersion: apps/v1
+      time: '2024-02-23T14:30:09Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:autoscaling.knative.dev/class': {}
+            'f:internal.serving.kserve.io/storage-spec': {}
+            .: {}
+            'f:sidecar.istio.io/rewriteAppHTTPProbers': {}
+            'f:prometheus.kserve.io/port': {}
+            'f:serving.knative.dev/creator': {}
+            'f:autoscaling.knative.dev/max-scale': {}
+            'f:prometheus.kserve.io/path': {}
+            'f:openshift.io/display-name': {}
+            'f:internal.serving.kserve.io/storage-initializer-sourceuri': {}
+            'f:sidecar.istio.io/inject': {}
+            'f:internal.serving.kserve.io/storage-spec-key': {}
+            'f:autoscaling.knative.dev/min-scale': {}
+          'f:labels':
+            'f:component': {}
+            'f:opendatahub.io/dashboard': {}
+            'f:app': {}
+            .: {}
+            'f:serving.kserve.io/inferenceservice': {}
+            'f:serving.knative.dev/configurationGeneration': {}
+            'f:serving.knative.dev/configurationUID': {}
+            'f:serving.knative.dev/serviceUID': {}
+            'f:serving.knative.dev/revision': {}
+            'f:serving.knative.dev/service': {}
+            'f:serving.knative.dev/revisionUID': {}
+            'f:serving.knative.dev/configuration': {}
+          'f:ownerReferences':
+            .: {}
+            'k:{"uid":"5e379137-958f-45fb-911c-f8f025bc553e"}': {}
+        'f:spec':
+          'f:progressDeadlineSeconds': {}
+          'f:replicas': {}
+          'f:revisionHistoryLimit': {}
+          'f:selector': {}
+          'f:strategy':
+            'f:rollingUpdate':
+              .: {}
+              'f:maxSurge': {}
+              'f:maxUnavailable': {}
+            'f:type': {}
+          'f:template':
+            'f:metadata':
+              'f:annotations':
+                'f:autoscaling.knative.dev/class': {}
+                'f:internal.serving.kserve.io/storage-spec': {}
+                .: {}
+                'f:sidecar.istio.io/rewriteAppHTTPProbers': {}
+                'f:prometheus.kserve.io/port': {}
+                'f:serving.knative.dev/creator': {}
+                'f:autoscaling.knative.dev/max-scale': {}
+                'f:prometheus.kserve.io/path': {}
+                'f:openshift.io/display-name': {}
+                'f:internal.serving.kserve.io/storage-initializer-sourceuri': {}
+                'f:sidecar.istio.io/inject': {}
+                'f:internal.serving.kserve.io/storage-spec-key': {}
+                'f:autoscaling.knative.dev/min-scale': {}
+              'f:labels':
+                'f:component': {}
+                'f:opendatahub.io/dashboard': {}
+                'f:app': {}
+                .: {}
+                'f:serving.kserve.io/inferenceservice': {}
+                'f:serving.knative.dev/configurationGeneration': {}
+                'f:serving.knative.dev/configurationUID': {}
+                'f:serving.knative.dev/serviceUID': {}
+                'f:serving.knative.dev/revision': {}
+                'f:serving.knative.dev/service': {}
+                'f:serving.knative.dev/revisionUID': {}
+                'f:serving.knative.dev/configuration': {}
+            'f:spec':
+              'f:containers':
+                'k:{"name":"kserve-container"}':
+                  'f:image': {}
+                  'f:volumeMounts':
+                    .: {}
+                    'k:{"mountPath":"/dev/shm"}':
+                      .: {}
+                      'f:mountPath': {}
+                      'f:name': {}
+                  'f:terminationMessagePolicy': {}
+                  .: {}
+                  'f:resources':
+                    .: {}
+                    'f:limits':
+                      .: {}
+                      'f:cpu': {}
+                      'f:memory': {}
+                    'f:requests':
+                      .: {}
+                      'f:cpu': {}
+                      'f:memory': {}
+                  'f:args': {}
+                  'f:lifecycle':
+                    .: {}
+                    'f:preStop':
+                      .: {}
+                      'f:httpGet':
+                        .: {}
+                        'f:path': {}
+                        'f:port': {}
+                        'f:scheme': {}
+                  'f:env':
+                    .: {}
+                    'k:{"name":"K_CONFIGURATION"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"K_REVISION"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"K_SERVICE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"PORT"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                  'f:terminationMessagePath': {}
+                  'f:imagePullPolicy': {}
+                  'f:ports':
+                    .: {}
+                    'k:{"containerPort":8888,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:name': {}
+                      'f:protocol': {}
+                  'f:name': {}
+                'k:{"name":"queue-proxy"}':
+                  'f:image': {}
+                  'f:terminationMessagePolicy': {}
+                  .: {}
+                  'f:resources':
+                    .: {}
+                    'f:requests':
+                      .: {}
+                      'f:cpu': {}
+                  'f:env':
+                    'k:{"name":"SERVING_ENABLE_PROBE_REQUEST_LOG"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"REVISION_TIMEOUT_SECONDS"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"SERVING_LOGGING_LEVEL"}':
+                      .: {}
+                      'f:name': {}
+                    'k:{"name":"METRICS_DOMAIN"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"SERVING_POD"}':
+                      .: {}
+                      'f:name': {}
+                      'f:valueFrom':
+                        .: {}
+                        'f:fieldRef': {}
+                    'k:{"name":"QUEUE_SERVING_PORT"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"USER_PORT"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"CONTAINER_CONCURRENCY"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"SERVING_REQUEST_METRICS_BACKEND"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"TRACING_CONFIG_ZIPKIN_ENDPOINT"}':
+                      .: {}
+                      'f:name': {}
+                    'k:{"name":"QUEUE_SERVING_TLS_PORT"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"REVISION_IDLE_TIMEOUT_SECONDS"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"ROOT_CA"}':
+                      .: {}
+                      'f:name': {}
+                    .: {}
+                    'k:{"name":"ENABLE_PROFILING"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"SERVING_ENABLE_REQUEST_LOG"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"SYSTEM_NAMESPACE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"HOST_IP"}':
+                      .: {}
+                      'f:name': {}
+                      'f:valueFrom':
+                        .: {}
+                        'f:fieldRef': {}
+                    'k:{"name":"SERVING_REVISION"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"SERVING_SERVICE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"SERVING_CONFIGURATION"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"TRACING_CONFIG_DEBUG"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"ENABLE_HTTP2_AUTO_DETECTION"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"SERVING_POD_IP"}':
+                      .: {}
+                      'f:name': {}
+                      'f:valueFrom':
+                        .: {}
+                        'f:fieldRef': {}
+                    'k:{"name":"TRACING_CONFIG_BACKEND"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"METRICS_COLLECTOR_ADDRESS"}':
+                      .: {}
+                      'f:name': {}
+                    'k:{"name":"SERVING_LOGGING_CONFIG"}':
+                      .: {}
+                      'f:name': {}
+                    'k:{"name":"TRACING_CONFIG_SAMPLE_RATE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"SERVING_NAMESPACE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"SERVING_READINESS_PROBE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"SERVING_REQUEST_LOG_TEMPLATE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"REVISION_RESPONSE_START_TIMEOUT_SECONDS"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                  'f:readinessProbe':
+                    .: {}
+                    'f:failureThreshold': {}
+                    'f:httpGet':
+                      .: {}
+                      'f:httpHeaders': {}
+                      'f:path': {}
+                      'f:port': {}
+                      'f:scheme': {}
+                    'f:periodSeconds': {}
+                    'f:successThreshold': {}
+                    'f:timeoutSeconds': {}
+                  'f:securityContext':
+                    .: {}
+                    'f:allowPrivilegeEscalation': {}
+                    'f:capabilities':
+                      .: {}
+                      'f:drop': {}
+                    'f:readOnlyRootFilesystem': {}
+                    'f:runAsNonRoot': {}
+                  'f:terminationMessagePath': {}
+                  'f:imagePullPolicy': {}
+                  'f:ports':
+                    .: {}
+                    'k:{"containerPort":8012,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:name': {}
+                      'f:protocol': {}
+                    'k:{"containerPort":8022,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:name': {}
+                      'f:protocol': {}
+                    'k:{"containerPort":8112,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:name': {}
+                      'f:protocol': {}
+                    'k:{"containerPort":9090,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:name': {}
+                      'f:protocol': {}
+                    'k:{"containerPort":9091,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:name': {}
+                      'f:protocol': {}
+                  'f:name': {}
+              'f:dnsPolicy': {}
+              'f:enableServiceLinks': {}
+              'f:restartPolicy': {}
+              'f:schedulerName': {}
+              'f:securityContext': {}
+              'f:terminationGracePeriodSeconds': {}
+              'f:volumes':
+                .: {}
+                'k:{"name":"shm"}':
+                  .: {}
+                  'f:emptyDir':
+                    .: {}
+                    'f:medium': {}
+                    'f:sizeLimit': {}
+                  'f:name': {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: apps/v1
+      time: '2024-02-23T14:30:17Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:deployment.kubernetes.io/revision': {}
+        'f:status':
+          'f:availableReplicas': {}
+          'f:conditions':
+            .: {}
+            'k:{"type":"Available"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Progressing"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+          'f:observedGeneration': {}
+          'f:readyReplicas': {}
+          'f:replicas': {}
+          'f:updatedReplicas': {}
+      subresource: status
+  namespace: fraud-detection
+  ownerReferences:
+    - apiVersion: serving.knative.dev/v1
+      kind: Revision
+      name: fraud-predictor-00001
+      uid: 5e379137-958f-45fb-911c-f8f025bc553e
+      controller: true
+      blockOwnerDeletion: true
+  labels:
+    app: fraud-predictor-00001
+    serving.knative.dev/configurationUID: 3a38acfa-554f-4624-a58b-88e42c289af2
+    serving.knative.dev/serviceUID: 89e1c49c-6020-4bfa-9628-fbb813b25599
+    serving.knative.dev/revision: fraud-predictor-00001
+    service.istio.io/canonical-revision: fraud-predictor-00001
+    serving.knative.dev/configurationGeneration: '1'
+    serving.knative.dev/revisionUID: 5e379137-958f-45fb-911c-f8f025bc553e
+    serving.knative.dev/service: fraud-predictor
+    serving.knative.dev/configuration: fraud-predictor
+    service.istio.io/canonical-name: fraud-predictor
+    opendatahub.io/dashboard: 'true'
+    component: predictor
+    serving.kserve.io/inferenceservice: fraud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      serving.knative.dev/revisionUID: 5e379137-958f-45fb-911c-f8f025bc553e
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: fraud-predictor-00001
+        serving.knative.dev/configurationUID: 3a38acfa-554f-4624-a58b-88e42c289af2
+        serving.knative.dev/serviceUID: 89e1c49c-6020-4bfa-9628-fbb813b25599
+        serving.knative.dev/revision: fraud-predictor-00001
+        service.istio.io/canonical-revision: fraud-predictor-00001
+        serving.knative.dev/configurationGeneration: '1'
+        serving.knative.dev/revisionUID: 5e379137-958f-45fb-911c-f8f025bc553e
+        serving.knative.dev/service: fraud-predictor
+        serving.knative.dev/configuration: fraud-predictor
+        service.istio.io/canonical-name: fraud-predictor
+        opendatahub.io/dashboard: 'true'
+        component: predictor
+        serving.kserve.io/inferenceservice: fraud
+      annotations:
+        internal.serving.kserve.io/storage-initializer-sourceuri: '<scheme-placeholder>://models/fraud/'
+        prometheus.kserve.io/port: '8888'
+        serving.knative.dev/creator: >-
+          system:serviceaccount:redhat-ods-applications:kserve-controller-manager
+        autoscaling.knative.dev/max-scale: '1'
+        prometheus.kserve.io/path: /metrics
+        openshift.io/display-name: fraud
+        sidecar.istio.io/inject: 'true'
+        internal.serving.kserve.io/storage-spec-key: aws-connection-my-storage
+        autoscaling.knative.dev/min-scale: '1'
+        sidecar.istio.io/rewriteAppHTTPProbers: 'true'
+        autoscaling.knative.dev/class: kpa.autoscaling.knative.dev
+        internal.serving.kserve.io/storage-spec: 'true'
+    spec:
+      volumes:
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 2Gi
+      containers:
+        - resources:
+            limits:
+              cpu: '2'
+              memory: 8Gi
+            requests:
+              cpu: '1'
+              memory: 4Gi
+          terminationMessagePath: /dev/termination-log
+          lifecycle:
+            preStop:
+              httpGet:
+                path: /wait-for-drain
+                port: 8022
+                scheme: HTTP
+          name: kserve-container
+          env:
+            - name: PORT
+              value: '8888'
+            - name: K_REVISION
+              value: fraud-predictor-00001
+            - name: K_CONFIGURATION
+              value: fraud-predictor
+            - name: K_SERVICE
+              value: fraud-predictor
+          ports:
+            - name: user-port
+              containerPort: 8888
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: shm
+              mountPath: /dev/shm
+          terminationMessagePolicy: FallbackToLogsOnError
+          image: >-
+            quay.io/opendatahub/openvino_model_server@sha256:08b6bab811c7da90a5f331d1b774656c6cf066373578b49e403c227e411ef9bd
+          args:
+            - '--model_name=fraud'
+            - '--port=8001'
+            - '--rest_port=8888'
+            - '--model_path=/mnt/models'
+            - '--file_system_poll_wait_seconds=0'
+            - '--grpc_bind_address=127.0.0.1'
+            - '--rest_bind_address=127.0.0.1'
+        - resources:
+            requests:
+              cpu: 25m
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8012
+              scheme: HTTP
+              httpHeaders:
+                - name: K-Network-Probe
+                  value: queue
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: /dev/termination-log
+          name: queue-proxy
+          env:
+            - name: SERVING_NAMESPACE
+              value: fraud-detection
+            - name: SERVING_SERVICE
+              value: fraud-predictor
+            - name: SERVING_CONFIGURATION
+              value: fraud-predictor
+            - name: SERVING_REVISION
+              value: fraud-predictor-00001
+            - name: QUEUE_SERVING_PORT
+              value: '8012'
+            - name: QUEUE_SERVING_TLS_PORT
+              value: '8112'
+            - name: CONTAINER_CONCURRENCY
+              value: '0'
+            - name: REVISION_TIMEOUT_SECONDS
+              value: '300'
+            - name: REVISION_RESPONSE_START_TIMEOUT_SECONDS
+              value: '0'
+            - name: REVISION_IDLE_TIMEOUT_SECONDS
+              value: '0'
+            - name: SERVING_POD
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+            - name: SERVING_POD_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.podIP
+            - name: SERVING_LOGGING_CONFIG
+            - name: SERVING_LOGGING_LEVEL
+            - name: SERVING_REQUEST_LOG_TEMPLATE
+              value: >-
+                {"httpRequest": {"requestMethod": "{{.Request.Method}}",
+                "requestUrl": "{{js .Request.RequestURI}}", "requestSize":
+                "{{.Request.ContentLength}}", "status": {{.Response.Code}},
+                "responseSize": "{{.Response.Size}}", "userAgent": "{{js
+                .Request.UserAgent}}", "remoteIp": "{{js .Request.RemoteAddr}}",
+                "serverIp": "{{.Revision.PodIP}}", "referer": "{{js
+                .Request.Referer}}", "latency": "{{.Response.Latency}}s",
+                "protocol": "{{.Request.Proto}}"}, "traceId": "{{index
+                .Request.Header "X-B3-Traceid"}}"}
+            - name: SERVING_ENABLE_REQUEST_LOG
+              value: 'false'
+            - name: SERVING_REQUEST_METRICS_BACKEND
+              value: prometheus
+            - name: TRACING_CONFIG_BACKEND
+              value: none
+            - name: TRACING_CONFIG_ZIPKIN_ENDPOINT
+            - name: TRACING_CONFIG_DEBUG
+              value: 'false'
+            - name: TRACING_CONFIG_SAMPLE_RATE
+              value: '0.1'
+            - name: USER_PORT
+              value: '8888'
+            - name: SYSTEM_NAMESPACE
+              value: knative-serving
+            - name: METRICS_DOMAIN
+              value: knative.dev/internal/serving
+            - name: SERVING_READINESS_PROBE
+              value: >-
+                {"tcpSocket":{"port":8888,"host":"127.0.0.1"},"successThreshold":1}
+            - name: ENABLE_PROFILING
+              value: 'false'
+            - name: SERVING_ENABLE_PROBE_REQUEST_LOG
+              value: 'false'
+            - name: METRICS_COLLECTOR_ADDRESS
+            - name: HOST_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.hostIP
+            - name: ENABLE_HTTP2_AUTO_DETECTION
+              value: 'false'
+            - name: ROOT_CA
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+          ports:
+            - name: http-queueadm
+              containerPort: 8022
+              protocol: TCP
+            - name: http-autometric
+              containerPort: 9090
+              protocol: TCP
+            - name: http-usermetric
+              containerPort: 9091
+              protocol: TCP
+            - name: queue-port
+              containerPort: 8012
+              protocol: TCP
+            - name: https-port
+              containerPort: 8112
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          terminationMessagePolicy: File
+          image: >-
+            registry.redhat.io/openshift-serverless-1/serving-queue-rhel8@sha256:8353ccb4f0d70597d61e4fd1f799d4bb74e5bc038f6b9916059e712aa70b97c1
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 300
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+      enableServiceLinks: false
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+status:
+  observedGeneration: 1
+  replicas: 1
+  updatedReplicas: 1
+  readyReplicas: 1
+  availableReplicas: 1
+  conditions:
+    - type: Available
+      status: 'True'
+      lastUpdateTime: '2024-02-23T14:30:17Z'
+      lastTransitionTime: '2024-02-23T14:30:17Z'
+      reason: MinimumReplicasAvailable
+      message: Deployment has minimum availability.
+    - type: Progressing
+      status: 'True'
+      lastUpdateTime: '2024-02-23T14:30:17Z'
+      lastTransitionTime: '2024-02-23T14:30:09Z'
+      reason: NewReplicaSetAvailable
+      message: >-
+        ReplicaSet "fraud-predictor-00001-deployment-655699d958" has
+        successfully progressed.

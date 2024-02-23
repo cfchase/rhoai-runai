@@ -1,0 +1,584 @@
+﻿kind: Deployment
+apiVersion: apps/v1
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: '1'
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"labels":{"app":"ds-pipeline-pipelines-definition","component":"data-science-pipelines","dspa":"pipelines-definition"},"name":"ds-pipeline-pipelines-definition","namespace":"fraud-detection","ownerReferences":[{"apiVersion":"datasciencepipelinesapplications.opendatahub.io/v1alpha1","blockOwnerDeletion":true,"controller":true,"kind":"DataSciencePipelinesApplication","name":"pipelines-definition","uid":"e9b6de73-b1cf-422e-b6c9-1ba93d900075"}]},"spec":{"selector":{"matchLabels":{"app":"ds-pipeline-pipelines-definition","component":"data-science-pipelines","dspa":"pipelines-definition"}},"template":{"metadata":{"labels":{"app":"ds-pipeline-pipelines-definition","component":"data-science-pipelines","dspa":"pipelines-definition"}},"spec":{"containers":[{"env":[{"name":"POD_NAMESPACE","value":"fraud-detection"},{"name":"DBCONFIG_USER","value":"mlpipeline"},{"name":"DBCONFIG_PASSWORD","valueFrom":{"secretKeyRef":{"key":"password","name":"ds-pipeline-db-pipelines-definition"}}},{"name":"DBCONFIG_DBNAME","value":"mlpipeline"},{"name":"DBCONFIG_HOST","value":"mariadb-pipelines-definition.fraud-detection.svc.cluster.local"},{"name":"DBCONFIG_PORT","value":"3306"},{"name":"ARTIFACT_BUCKET","value":"pipeline-artifacts"},{"name":"ARTIFACT_ENDPOINT","value":"https://minio-s3-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com"},{"name":"ARTIFACT_SCRIPT","valueFrom":{"configMapKeyRef":{"key":"artifact_script","name":"ds-pipeline-artifact-script-pipelines-definition"}}},{"name":"ARTIFACT_IMAGE","value":"registry.redhat.io/rhoai/odh-ml-pipelines-artifact-manager-rhel8@sha256:83248106ac34fb8b9a17fc372f7b6172ef224b79a2627add9e97c7551b2da444"},{"name":"ARCHIVE_LOGS","value":"false"},{"name":"TRACK_ARTIFACTS","value":"true"},{"name":"STRIP_EOF","value":"true"},{"name":"PIPELINE_RUNTIME","value":"tekton"},{"name":"DEFAULTPIPELINERUNNERSERVICEACCOUNT","value":"pipeline-runner-pipelines-definition"},{"name":"INJECT_DEFAULT_SCRIPT","value":"true"},{"name":"APPLY_TEKTON_CUSTOM_RESOURCE","value":"true"},{"name":"TERMINATE_STATUS","value":"Cancelled"},{"name":"AUTO_UPDATE_PIPELINE_DEFAULT_VERSION","value":"true"},{"name":"DBCONFIG_CONMAXLIFETIMESEC","value":"120"},{"name":"ML_PIPELINE_VISUALIZATIONSERVER_SERVICE_HOST","value":"ds-pipeline-visualizationserver"},{"name":"ML_PIPELINE_VISUALIZATIONSERVER_SERVICE_PORT","value":"8888"},{"name":"OBJECTSTORECONFIG_BUCKETNAME","value":"pipeline-artifacts"},{"name":"OBJECTSTORECONFIG_ACCESSKEY","valueFrom":{"secretKeyRef":{"key":"accesskey","name":"mlpipeline-minio-artifact"}}},{"name":"OBJECTSTORECONFIG_SECRETACCESSKEY","valueFrom":{"secretKeyRef":{"key":"secretkey","name":"mlpipeline-minio-artifact"}}},{"name":"OBJECTSTORECONFIG_SECURE","value":"true"},{"name":"MINIO_SERVICE_SERVICE_HOST","value":"minio-s3-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com"},{"name":"MINIO_SERVICE_SERVICE_PORT","value":""},{"name":"CACHE_IMAGE","value":"registry.redhat.io/rhoai/odh-ml-pipelines-cache-rhel8@sha256:fe5e311e3c0ca6e75fc3315b4af26d6bc75e42d7a3efc26561e98bcf54cc2bae"},{"name":"MOVERESULTS_IMAGE","value":"registry.access.redhat.com/ubi8/ubi-micro@sha256:396baed3d689157d96aa7d8988fdfea7eb36684c8335eb391cf1952573e689c1"}],"image":"registry.redhat.io/rhoai/odh-ml-pipelines-api-server-rhel8@sha256:b2b401d377707028f4ee5e5b3207d7034f55f22ff8980b31773ab02ca96c47e1","imagePullPolicy":"Always","livenessProbe":{"exec":{"command":["wget","-q","-S","-O","-","http://localhost:8888/apis/v1beta1/healthz"]},"initialDelaySeconds":3,"periodSeconds":5,"timeoutSeconds":2},"name":"ds-pipeline-api-server","ports":[{"containerPort":8888,"name":"http"},{"containerPort":8887,"name":"grpc"}],"readinessProbe":{"exec":{"command":["wget","-q","-S","-O","-","http://localhost:8888/apis/v1beta1/healthz"]},"initialDelaySeconds":3,"periodSeconds":5,"timeoutSeconds":2},"resources":{"limits":{"cpu":"500m","memory":"1Gi"},"requests":{"cpu":"250m","memory":"500Mi"}}},{"args":["--https-address=:8443","--provider=openshift","--openshift-service-account=ds-pipeline-pipelines-definition","--upstream=http://localhost:8888","--tls-cert=/etc/tls/private/tls.crt","--tls-key=/etc/tls/private/tls.key","--cookie-secret=SECRET","--openshift-delegate-urls={\"/\":
+      {\"group\":\"route.openshift.io\",\"resource\":\"routes\",\"verb\":\"get\",\"name\":\"ds-pipeline-pipelines-definition\",\"namespace\":\"fraud-detection\"}}","--openshift-sar={\"namespace\":\"fraud-detection\",\"resource\":\"routes\",\"resourceName\":\"ds-pipeline-pipelines-definition\",\"verb\":\"get\",\"resourceAPIGroup\":\"route.openshift.io\"}","--skip-auth-regex='(^/metrics|^/apis/v1beta1/healthz)'"],"image":"registry.redhat.io/openshift4/ose-oauth-proxy@sha256:ab112105ac37352a2a4916a39d6736f5db6ab4c29bad4467de8d613e80e9bb33","livenessProbe":{"failureThreshold":3,"httpGet":{"path":"/oauth/healthz","port":"oauth","scheme":"HTTPS"},"initialDelaySeconds":30,"periodSeconds":5,"successThreshold":1,"timeoutSeconds":1},"name":"oauth-proxy","ports":[{"containerPort":8443,"name":"oauth"}],"readinessProbe":{"failureThreshold":3,"httpGet":{"path":"/oauth/healthz","port":"oauth","scheme":"HTTPS"},"initialDelaySeconds":5,"periodSeconds":5,"successThreshold":1,"timeoutSeconds":1},"resources":{"limits":{"cpu":"100m","memory":"256Mi"},"requests":{"cpu":"100m","memory":"256Mi"}},"volumeMounts":[{"mountPath":"/etc/tls/private","name":"proxy-tls"}]}],"serviceAccountName":"ds-pipeline-pipelines-definition","volumes":[{"name":"proxy-tls","secret":{"secretName":"ds-pipelines-proxy-tls-pipelines-definition"}}]}}}}
+    manifestival: new
+  resourceVersion: '460599274'
+  name: ds-pipeline-pipelines-definition
+  uid: bf3320a4-d905-412d-96d2-cf8717ea6925
+  creationTimestamp: '2024-02-14T18:50:43Z'
+  generation: 2
+  managedFields:
+    - manager: manager
+      operation: Update
+      apiVersion: apps/v1
+      time: '2024-02-14T18:50:45Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+            'f:manifestival': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:component': {}
+            'f:dspa': {}
+          'f:ownerReferences':
+            .: {}
+            'k:{"uid":"e9b6de73-b1cf-422e-b6c9-1ba93d900075"}': {}
+        'f:spec':
+          'f:progressDeadlineSeconds': {}
+          'f:replicas': {}
+          'f:revisionHistoryLimit': {}
+          'f:selector': {}
+          'f:strategy':
+            'f:rollingUpdate':
+              .: {}
+              'f:maxSurge': {}
+              'f:maxUnavailable': {}
+            'f:type': {}
+          'f:template':
+            'f:metadata':
+              'f:labels':
+                .: {}
+                'f:app': {}
+                'f:component': {}
+                'f:dspa': {}
+            'f:spec':
+              'f:volumes':
+                .: {}
+                'k:{"name":"proxy-tls"}':
+                  .: {}
+                  'f:name': {}
+                  'f:secret':
+                    .: {}
+                    'f:defaultMode': {}
+                    'f:secretName': {}
+              'f:containers':
+                'k:{"name":"ds-pipeline-api-server"}':
+                  'f:image': {}
+                  'f:terminationMessagePolicy': {}
+                  .: {}
+                  'f:resources':
+                    .: {}
+                    'f:limits':
+                      .: {}
+                      'f:cpu': {}
+                      'f:memory': {}
+                    'f:requests':
+                      .: {}
+                      'f:cpu': {}
+                      'f:memory': {}
+                  'f:livenessProbe':
+                    .: {}
+                    'f:exec':
+                      .: {}
+                      'f:command': {}
+                    'f:failureThreshold': {}
+                    'f:initialDelaySeconds': {}
+                    'f:periodSeconds': {}
+                    'f:successThreshold': {}
+                    'f:timeoutSeconds': {}
+                  'f:env':
+                    'k:{"name":"MINIO_SERVICE_SERVICE_PORT"}':
+                      .: {}
+                      'f:name': {}
+                    'k:{"name":"OBJECTSTORECONFIG_SECRETACCESSKEY"}':
+                      .: {}
+                      'f:name': {}
+                      'f:valueFrom':
+                        .: {}
+                        'f:secretKeyRef': {}
+                    'k:{"name":"ML_PIPELINE_VISUALIZATIONSERVER_SERVICE_PORT"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"MINIO_SERVICE_SERVICE_HOST"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"AUTO_UPDATE_PIPELINE_DEFAULT_VERSION"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"STRIP_EOF"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"INJECT_DEFAULT_SCRIPT"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"ARTIFACT_BUCKET"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"ARTIFACT_SCRIPT"}':
+                      .: {}
+                      'f:name': {}
+                      'f:valueFrom':
+                        .: {}
+                        'f:configMapKeyRef': {}
+                    'k:{"name":"APPLY_TEKTON_CUSTOM_RESOURCE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"ML_PIPELINE_VISUALIZATIONSERVER_SERVICE_HOST"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"DBCONFIG_CONMAXLIFETIMESEC"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"DBCONFIG_PASSWORD"}':
+                      .: {}
+                      'f:name': {}
+                      'f:valueFrom':
+                        .: {}
+                        'f:secretKeyRef': {}
+                    .: {}
+                    'k:{"name":"ARCHIVE_LOGS"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"CACHE_IMAGE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"OBJECTSTORECONFIG_ACCESSKEY"}':
+                      .: {}
+                      'f:name': {}
+                      'f:valueFrom':
+                        .: {}
+                        'f:secretKeyRef': {}
+                    'k:{"name":"DBCONFIG_PORT"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"ARTIFACT_IMAGE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"POD_NAMESPACE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"MOVERESULTS_IMAGE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"OBJECTSTORECONFIG_BUCKETNAME"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"TERMINATE_STATUS"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"ARTIFACT_ENDPOINT"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"OBJECTSTORECONFIG_SECURE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"DBCONFIG_HOST"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"DBCONFIG_DBNAME"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"DBCONFIG_USER"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"DEFAULTPIPELINERUNNERSERVICEACCOUNT"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"PIPELINE_RUNTIME"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"TRACK_ARTIFACTS"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                  'f:readinessProbe':
+                    .: {}
+                    'f:exec':
+                      .: {}
+                      'f:command': {}
+                    'f:failureThreshold': {}
+                    'f:initialDelaySeconds': {}
+                    'f:periodSeconds': {}
+                    'f:successThreshold': {}
+                    'f:timeoutSeconds': {}
+                  'f:terminationMessagePath': {}
+                  'f:imagePullPolicy': {}
+                  'f:ports':
+                    .: {}
+                    'k:{"containerPort":8887,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:name': {}
+                      'f:protocol': {}
+                    'k:{"containerPort":8888,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:name': {}
+                      'f:protocol': {}
+                  'f:name': {}
+                'k:{"name":"oauth-proxy"}':
+                  'f:image': {}
+                  'f:volumeMounts':
+                    .: {}
+                    'k:{"mountPath":"/etc/tls/private"}':
+                      .: {}
+                      'f:mountPath': {}
+                      'f:name': {}
+                  'f:terminationMessagePolicy': {}
+                  .: {}
+                  'f:resources':
+                    .: {}
+                    'f:limits':
+                      .: {}
+                      'f:cpu': {}
+                      'f:memory': {}
+                    'f:requests':
+                      .: {}
+                      'f:cpu': {}
+                      'f:memory': {}
+                  'f:args': {}
+                  'f:livenessProbe':
+                    .: {}
+                    'f:failureThreshold': {}
+                    'f:httpGet':
+                      .: {}
+                      'f:path': {}
+                      'f:port': {}
+                      'f:scheme': {}
+                    'f:initialDelaySeconds': {}
+                    'f:periodSeconds': {}
+                    'f:successThreshold': {}
+                    'f:timeoutSeconds': {}
+                  'f:readinessProbe':
+                    .: {}
+                    'f:failureThreshold': {}
+                    'f:httpGet':
+                      .: {}
+                      'f:path': {}
+                      'f:port': {}
+                      'f:scheme': {}
+                    'f:initialDelaySeconds': {}
+                    'f:periodSeconds': {}
+                    'f:successThreshold': {}
+                    'f:timeoutSeconds': {}
+                  'f:terminationMessagePath': {}
+                  'f:imagePullPolicy': {}
+                  'f:ports':
+                    .: {}
+                    'k:{"containerPort":8443,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:name': {}
+                      'f:protocol': {}
+                  'f:name': {}
+              'f:dnsPolicy': {}
+              'f:serviceAccount': {}
+              'f:restartPolicy': {}
+              'f:schedulerName': {}
+              'f:terminationGracePeriodSeconds': {}
+              'f:serviceAccountName': {}
+              'f:securityContext': {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: apps/v1
+      time: '2024-02-14T18:53:23Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:deployment.kubernetes.io/revision': {}
+        'f:status':
+          'f:availableReplicas': {}
+          'f:conditions':
+            .: {}
+            'k:{"type":"Available"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Progressing"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+          'f:observedGeneration': {}
+          'f:readyReplicas': {}
+          'f:replicas': {}
+          'f:updatedReplicas': {}
+      subresource: status
+  namespace: fraud-detection
+  ownerReferences:
+    - apiVersion: datasciencepipelinesapplications.opendatahub.io/v1alpha1
+      kind: DataSciencePipelinesApplication
+      name: pipelines-definition
+      uid: e9b6de73-b1cf-422e-b6c9-1ba93d900075
+      controller: true
+      blockOwnerDeletion: true
+  labels:
+    app: ds-pipeline-pipelines-definition
+    component: data-science-pipelines
+    dspa: pipelines-definition
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ds-pipeline-pipelines-definition
+      component: data-science-pipelines
+      dspa: pipelines-definition
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ds-pipeline-pipelines-definition
+        component: data-science-pipelines
+        dspa: pipelines-definition
+    spec:
+      restartPolicy: Always
+      serviceAccountName: ds-pipeline-pipelines-definition
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+      securityContext: {}
+      containers:
+        - resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
+            requests:
+              cpu: 250m
+              memory: 500Mi
+          readinessProbe:
+            exec:
+              command:
+                - wget
+                - '-q'
+                - '-S'
+                - '-O'
+                - '-'
+                - 'http://localhost:8888/apis/v1beta1/healthz'
+            initialDelaySeconds: 3
+            timeoutSeconds: 2
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: /dev/termination-log
+          name: ds-pipeline-api-server
+          livenessProbe:
+            exec:
+              command:
+                - wget
+                - '-q'
+                - '-S'
+                - '-O'
+                - '-'
+                - 'http://localhost:8888/apis/v1beta1/healthz'
+            initialDelaySeconds: 3
+            timeoutSeconds: 2
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          env:
+            - name: POD_NAMESPACE
+              value: fraud-detection
+            - name: DBCONFIG_USER
+              value: mlpipeline
+            - name: DBCONFIG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ds-pipeline-db-pipelines-definition
+                  key: password
+            - name: DBCONFIG_DBNAME
+              value: mlpipeline
+            - name: DBCONFIG_HOST
+              value: mariadb-pipelines-definition.fraud-detection.svc.cluster.local
+            - name: DBCONFIG_PORT
+              value: '3306'
+            - name: ARTIFACT_BUCKET
+              value: pipeline-artifacts
+            - name: ARTIFACT_ENDPOINT
+              value: >-
+                https://minio-s3-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com
+            - name: ARTIFACT_SCRIPT
+              valueFrom:
+                configMapKeyRef:
+                  name: ds-pipeline-artifact-script-pipelines-definition
+                  key: artifact_script
+            - name: ARTIFACT_IMAGE
+              value: >-
+                registry.redhat.io/rhoai/odh-ml-pipelines-artifact-manager-rhel8@sha256:83248106ac34fb8b9a17fc372f7b6172ef224b79a2627add9e97c7551b2da444
+            - name: ARCHIVE_LOGS
+              value: 'false'
+            - name: TRACK_ARTIFACTS
+              value: 'true'
+            - name: STRIP_EOF
+              value: 'true'
+            - name: PIPELINE_RUNTIME
+              value: tekton
+            - name: DEFAULTPIPELINERUNNERSERVICEACCOUNT
+              value: pipeline-runner-pipelines-definition
+            - name: INJECT_DEFAULT_SCRIPT
+              value: 'true'
+            - name: APPLY_TEKTON_CUSTOM_RESOURCE
+              value: 'true'
+            - name: TERMINATE_STATUS
+              value: Cancelled
+            - name: AUTO_UPDATE_PIPELINE_DEFAULT_VERSION
+              value: 'true'
+            - name: DBCONFIG_CONMAXLIFETIMESEC
+              value: '120'
+            - name: ML_PIPELINE_VISUALIZATIONSERVER_SERVICE_HOST
+              value: ds-pipeline-visualizationserver
+            - name: ML_PIPELINE_VISUALIZATIONSERVER_SERVICE_PORT
+              value: '8888'
+            - name: OBJECTSTORECONFIG_BUCKETNAME
+              value: pipeline-artifacts
+            - name: OBJECTSTORECONFIG_ACCESSKEY
+              valueFrom:
+                secretKeyRef:
+                  name: mlpipeline-minio-artifact
+                  key: accesskey
+            - name: OBJECTSTORECONFIG_SECRETACCESSKEY
+              valueFrom:
+                secretKeyRef:
+                  name: mlpipeline-minio-artifact
+                  key: secretkey
+            - name: OBJECTSTORECONFIG_SECURE
+              value: 'true'
+            - name: MINIO_SERVICE_SERVICE_HOST
+              value: >-
+                minio-s3-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com
+            - name: MINIO_SERVICE_SERVICE_PORT
+            - name: CACHE_IMAGE
+              value: >-
+                registry.redhat.io/rhoai/odh-ml-pipelines-cache-rhel8@sha256:fe5e311e3c0ca6e75fc3315b4af26d6bc75e42d7a3efc26561e98bcf54cc2bae
+            - name: MOVERESULTS_IMAGE
+              value: >-
+                registry.access.redhat.com/ubi8/ubi-micro@sha256:396baed3d689157d96aa7d8988fdfea7eb36684c8335eb391cf1952573e689c1
+          ports:
+            - name: http
+              containerPort: 8888
+              protocol: TCP
+            - name: grpc
+              containerPort: 8887
+              protocol: TCP
+          imagePullPolicy: Always
+          terminationMessagePolicy: File
+          image: >-
+            registry.redhat.io/rhoai/odh-ml-pipelines-api-server-rhel8@sha256:b2b401d377707028f4ee5e5b3207d7034f55f22ff8980b31773ab02ca96c47e1
+        - resources:
+            limits:
+              cpu: 100m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+          readinessProbe:
+            httpGet:
+              path: /oauth/healthz
+              port: oauth
+              scheme: HTTPS
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: /dev/termination-log
+          name: oauth-proxy
+          livenessProbe:
+            httpGet:
+              path: /oauth/healthz
+              port: oauth
+              scheme: HTTPS
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          ports:
+            - name: oauth
+              containerPort: 8443
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: proxy-tls
+              mountPath: /etc/tls/private
+          terminationMessagePolicy: File
+          image: >-
+            registry.redhat.io/openshift4/ose-oauth-proxy@sha256:ab112105ac37352a2a4916a39d6736f5db6ab4c29bad4467de8d613e80e9bb33
+          args:
+            - '--https-address=:8443'
+            - '--provider=openshift'
+            - '--openshift-service-account=ds-pipeline-pipelines-definition'
+            - '--upstream=http://localhost:8888'
+            - '--tls-cert=/etc/tls/private/tls.crt'
+            - '--tls-key=/etc/tls/private/tls.key'
+            - '--cookie-secret=SECRET'
+            - >-
+              --openshift-delegate-urls={"/":
+              {"group":"route.openshift.io","resource":"routes","verb":"get","name":"ds-pipeline-pipelines-definition","namespace":"fraud-detection"}}
+            - >-
+              --openshift-sar={"namespace":"fraud-detection","resource":"routes","resourceName":"ds-pipeline-pipelines-definition","verb":"get","resourceAPIGroup":"route.openshift.io"}
+            - '--skip-auth-regex=''(^/metrics|^/apis/v1beta1/healthz)'''
+      serviceAccount: ds-pipeline-pipelines-definition
+      volumes:
+        - name: proxy-tls
+          secret:
+            secretName: ds-pipelines-proxy-tls-pipelines-definition
+            defaultMode: 420
+      dnsPolicy: ClusterFirst
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+status:
+  observedGeneration: 2
+  replicas: 1
+  updatedReplicas: 1
+  readyReplicas: 1
+  availableReplicas: 1
+  conditions:
+    - type: Available
+      status: 'True'
+      lastUpdateTime: '2024-02-14T18:53:23Z'
+      lastTransitionTime: '2024-02-14T18:53:23Z'
+      reason: MinimumReplicasAvailable
+      message: Deployment has minimum availability.
+    - type: Progressing
+      status: 'True'
+      lastUpdateTime: '2024-02-14T18:53:23Z'
+      lastTransitionTime: '2024-02-14T18:50:43Z'
+      reason: NewReplicaSetAvailable
+      message: >-
+        ReplicaSet "ds-pipeline-pipelines-definition-77b6b67c94" has
+        successfully progressed.

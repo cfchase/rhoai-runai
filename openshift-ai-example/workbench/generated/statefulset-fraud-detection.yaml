@@ -1,0 +1,449 @@
+﻿kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: fraud-detection
+  namespace: fraud-detection
+  uid: 7ca8b5f5-8f31-4828-b525-b1cb1509c66b
+  resourceVersion: '484253663'
+  generation: 4
+  creationTimestamp: '2024-02-14T18:54:47Z'
+  ownerReferences:
+    - apiVersion: kubeflow.org/v1beta1
+      kind: Notebook
+      name: fraud-detection
+      uid: 97117d0b-355a-4dc5-b20f-a6e2ea26d074
+      controller: true
+      blockOwnerDeletion: true
+  managedFields:
+    - manager: manager
+      operation: Update
+      apiVersion: apps/v1
+      time: '2024-02-23T14:30:41Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:ownerReferences':
+            .: {}
+            'k:{"uid":"97117d0b-355a-4dc5-b20f-a6e2ea26d074"}': {}
+        'f:spec':
+          'f:podManagementPolicy': {}
+          'f:replicas': {}
+          'f:revisionHistoryLimit': {}
+          'f:selector': {}
+          'f:template':
+            'f:metadata':
+              'f:labels':
+                .: {}
+                'f:app': {}
+                'f:notebook-name': {}
+                'f:opendatahub.io/dashboard': {}
+                'f:opendatahub.io/odh-managed': {}
+                'f:opendatahub.io/user': {}
+                'f:statefulset': {}
+            'f:spec':
+              'f:volumes':
+                .: {}
+                'k:{"name":"elyra-dsp-details"}':
+                  .: {}
+                  'f:name': {}
+                  'f:secret':
+                    .: {}
+                    'f:defaultMode': {}
+                    'f:secretName': {}
+                'k:{"name":"fraud-detection"}':
+                  .: {}
+                  'f:name': {}
+                  'f:persistentVolumeClaim':
+                    .: {}
+                    'f:claimName': {}
+                'k:{"name":"oauth-config"}':
+                  .: {}
+                  'f:name': {}
+                  'f:secret':
+                    .: {}
+                    'f:defaultMode': {}
+                    'f:secretName': {}
+                'k:{"name":"shm"}':
+                  .: {}
+                  'f:emptyDir':
+                    .: {}
+                    'f:medium': {}
+                  'f:name': {}
+                'k:{"name":"tls-certificates"}':
+                  .: {}
+                  'f:name': {}
+                  'f:secret':
+                    .: {}
+                    'f:defaultMode': {}
+                    'f:secretName': {}
+              'f:containers':
+                'k:{"name":"fraud-detection"}':
+                  'f:envFrom': {}
+                  'f:image': {}
+                  'f:volumeMounts':
+                    .: {}
+                    'k:{"mountPath":"/dev/shm"}':
+                      .: {}
+                      'f:mountPath': {}
+                      'f:name': {}
+                    'k:{"mountPath":"/opt/app-root/runtimes"}':
+                      .: {}
+                      'f:mountPath': {}
+                      'f:name': {}
+                    'k:{"mountPath":"/opt/app-root/src"}':
+                      .: {}
+                      'f:mountPath': {}
+                      'f:name': {}
+                  'f:terminationMessagePolicy': {}
+                  .: {}
+                  'f:workingDir': {}
+                  'f:resources':
+                    .: {}
+                    'f:limits':
+                      .: {}
+                      'f:cpu': {}
+                      'f:memory': {}
+                    'f:requests':
+                      .: {}
+                      'f:cpu': {}
+                      'f:memory': {}
+                  'f:livenessProbe':
+                    .: {}
+                    'f:failureThreshold': {}
+                    'f:httpGet':
+                      .: {}
+                      'f:path': {}
+                      'f:port': {}
+                      'f:scheme': {}
+                    'f:initialDelaySeconds': {}
+                    'f:periodSeconds': {}
+                    'f:successThreshold': {}
+                    'f:timeoutSeconds': {}
+                  'f:env':
+                    .: {}
+                    'k:{"name":"JUPYTER_IMAGE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"NB_PREFIX"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"NOTEBOOK_ARGS"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                  'f:readinessProbe':
+                    .: {}
+                    'f:failureThreshold': {}
+                    'f:httpGet':
+                      .: {}
+                      'f:path': {}
+                      'f:port': {}
+                      'f:scheme': {}
+                    'f:initialDelaySeconds': {}
+                    'f:periodSeconds': {}
+                    'f:successThreshold': {}
+                    'f:timeoutSeconds': {}
+                  'f:terminationMessagePath': {}
+                  'f:imagePullPolicy': {}
+                  'f:ports':
+                    .: {}
+                    'k:{"containerPort":8888,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:name': {}
+                      'f:protocol': {}
+                  'f:name': {}
+                'k:{"name":"oauth-proxy"}':
+                  'f:image': {}
+                  'f:volumeMounts':
+                    .: {}
+                    'k:{"mountPath":"/etc/oauth/config"}':
+                      .: {}
+                      'f:mountPath': {}
+                      'f:name': {}
+                    'k:{"mountPath":"/etc/tls/private"}':
+                      .: {}
+                      'f:mountPath': {}
+                      'f:name': {}
+                  'f:terminationMessagePolicy': {}
+                  .: {}
+                  'f:resources':
+                    .: {}
+                    'f:limits':
+                      .: {}
+                      'f:cpu': {}
+                      'f:memory': {}
+                    'f:requests':
+                      .: {}
+                      'f:cpu': {}
+                      'f:memory': {}
+                  'f:args': {}
+                  'f:livenessProbe':
+                    .: {}
+                    'f:failureThreshold': {}
+                    'f:httpGet':
+                      .: {}
+                      'f:path': {}
+                      'f:port': {}
+                      'f:scheme': {}
+                    'f:initialDelaySeconds': {}
+                    'f:periodSeconds': {}
+                    'f:successThreshold': {}
+                    'f:timeoutSeconds': {}
+                  'f:env':
+                    .: {}
+                    'k:{"name":"NAMESPACE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:valueFrom':
+                        .: {}
+                        'f:fieldRef': {}
+                  'f:readinessProbe':
+                    .: {}
+                    'f:failureThreshold': {}
+                    'f:httpGet':
+                      .: {}
+                      'f:path': {}
+                      'f:port': {}
+                      'f:scheme': {}
+                    'f:initialDelaySeconds': {}
+                    'f:periodSeconds': {}
+                    'f:successThreshold': {}
+                    'f:timeoutSeconds': {}
+                  'f:terminationMessagePath': {}
+                  'f:imagePullPolicy': {}
+                  'f:ports':
+                    .: {}
+                    'k:{"containerPort":8443,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:name': {}
+                      'f:protocol': {}
+                  'f:name': {}
+              'f:dnsPolicy': {}
+              'f:tolerations': {}
+              'f:serviceAccount': {}
+              'f:restartPolicy': {}
+              'f:schedulerName': {}
+              'f:terminationGracePeriodSeconds': {}
+              'f:serviceAccountName': {}
+              'f:enableServiceLinks': {}
+              'f:securityContext': {}
+              'f:affinity': {}
+          'f:updateStrategy':
+            'f:rollingUpdate':
+              .: {}
+              'f:partition': {}
+            'f:type': {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: apps/v1
+      time: '2024-02-23T14:31:01Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:currentReplicas': {}
+          'f:currentRevision': {}
+          'f:updatedReplicas': {}
+          'f:readyReplicas': {}
+          'f:replicas': {}
+          'f:availableReplicas': {}
+          'f:collisionCount': {}
+          'f:observedGeneration': {}
+          'f:updateRevision': {}
+      subresource: status
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      statefulset: fraud-detection
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: fraud-detection
+        notebook-name: fraud-detection
+        opendatahub.io/dashboard: 'true'
+        opendatahub.io/odh-managed: 'true'
+        opendatahub.io/user: cchase-40redhat-2ecom
+        statefulset: fraud-detection
+    spec:
+      restartPolicy: Always
+      serviceAccountName: fraud-detection
+      schedulerName: default-scheduler
+      enableServiceLinks: false
+      affinity: {}
+      terminationGracePeriodSeconds: 30
+      securityContext: {}
+      containers:
+        - resources:
+            limits:
+              cpu: '4'
+              memory: 8Gi
+            requests:
+              cpu: '1'
+              memory: 8Gi
+          readinessProbe:
+            httpGet:
+              path: /notebook/fraud-detection/fraud-detection/api
+              port: notebook-port
+              scheme: HTTP
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: /dev/termination-log
+          name: fraud-detection
+          livenessProbe:
+            httpGet:
+              path: /notebook/fraud-detection/fraud-detection/api
+              port: notebook-port
+              scheme: HTTP
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          env:
+            - name: NOTEBOOK_ARGS
+              value: |-
+                --ServerApp.port=8888
+                                  --ServerApp.token=''
+                                  --ServerApp.password=''
+                                  --ServerApp.base_url=/notebook/fraud-detection/fraud-detection
+                                  --ServerApp.quit_button=False
+                                  --ServerApp.tornado_settings={"user":"cchase-40redhat-2ecom","hub_host":"https://rhods-dashboard-redhat-ods-applications.apps.aisrhods-wx.8goc.p1.openshiftapps.com","hub_prefix":"/projects/fraud-detection"}
+            - name: JUPYTER_IMAGE
+              value: >-
+                image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/tensorflow:2023.2
+            - name: NB_PREFIX
+              value: /notebook/fraud-detection/fraud-detection
+          ports:
+            - name: notebook-port
+              containerPort: 8888
+              protocol: TCP
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: fraud-detection
+              mountPath: /opt/app-root/src
+            - name: elyra-dsp-details
+              mountPath: /opt/app-root/runtimes
+            - name: shm
+              mountPath: /dev/shm
+          terminationMessagePolicy: File
+          envFrom:
+            - secretRef:
+                name: aws-connection-my-storage
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/tensorflow:2023.2
+          workingDir: /opt/app-root/src
+        - resources:
+            limits:
+              cpu: 100m
+              memory: 64Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
+          readinessProbe:
+            httpGet:
+              path: /oauth/healthz
+              port: oauth-proxy
+              scheme: HTTPS
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: /dev/termination-log
+          name: oauth-proxy
+          livenessProbe:
+            httpGet:
+              path: /oauth/healthz
+              port: oauth-proxy
+              scheme: HTTPS
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          env:
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+          ports:
+            - name: oauth-proxy
+              containerPort: 8443
+              protocol: TCP
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: oauth-config
+              mountPath: /etc/oauth/config
+            - name: tls-certificates
+              mountPath: /etc/tls/private
+          terminationMessagePolicy: File
+          image: >-
+            registry.redhat.io/openshift4/ose-oauth-proxy@sha256:4bef31eb993feb6f1096b51b4876c65a6fb1f4401fee97fa4f4542b6b7c9bc46
+          args:
+            - '--provider=openshift'
+            - '--https-address=:8443'
+            - '--http-address='
+            - '--openshift-service-account=fraud-detection'
+            - '--cookie-secret-file=/etc/oauth/config/cookie_secret'
+            - '--cookie-expire=24h0m0s'
+            - '--tls-cert=/etc/tls/private/tls.crt'
+            - '--tls-key=/etc/tls/private/tls.key'
+            - '--upstream=http://localhost:8888'
+            - '--upstream-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
+            - '--email-domain=*'
+            - '--skip-provider-button'
+            - >-
+              --openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"fraud-detection","namespace":"$(NAMESPACE)"}
+            - >-
+              --logout-url=https://rhods-dashboard-redhat-ods-applications.apps.aisrhods-wx.8goc.p1.openshiftapps.com/projects/fraud-detection?notebookLogout=fraud-detection
+      serviceAccount: fraud-detection
+      volumes:
+        - name: fraud-detection
+          persistentVolumeClaim:
+            claimName: fraud-detection
+        - name: elyra-dsp-details
+          secret:
+            secretName: ds-pipeline-config
+            defaultMode: 420
+        - name: shm
+          emptyDir:
+            medium: Memory
+        - name: oauth-config
+          secret:
+            secretName: fraud-detection-oauth-config
+            defaultMode: 420
+        - name: tls-certificates
+          secret:
+            secretName: fraud-detection-tls
+            defaultMode: 420
+      dnsPolicy: ClusterFirst
+      tolerations:
+        - key: NotebooksOnly
+          operator: Exists
+          effect: NoSchedule
+  serviceName: ''
+  podManagementPolicy: OrderedReady
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+  revisionHistoryLimit: 10
+status:
+  observedGeneration: 4
+  availableReplicas: 1
+  updateRevision: fraud-detection-849c484dc4
+  currentRevision: fraud-detection-849c484dc4
+  currentReplicas: 1
+  updatedReplicas: 1
+  replicas: 1
+  collisionCount: 0
+  readyReplicas: 1

@@ -1,0 +1,1041 @@
+﻿kind: Pod
+apiVersion: v1
+metadata:
+  generateName: modelmesh-serving-ovms-7f4f48649b-
+  annotations:
+    k8s.ovn.org/pod-networks: >-
+      {"default":{"ip_addresses":["10.128.195.95/23"],"mac_address":"0a:58:0a:80:c3:5f","gateway_ips":["10.128.194.1"],"ip_address":"10.128.195.95/23","gateway_ip":"10.128.194.1"}}
+    k8s.v1.cni.cncf.io/network-status: |-
+      [{
+          "name": "ovn-kubernetes",
+          "interface": "eth0",
+          "ips": [
+              "10.128.195.95"
+          ],
+          "mac": "0a:58:0a:80:c3:5f",
+          "default": true,
+          "dns": {}
+      }]
+    openshift.io/scc: restricted-v2
+    prometheus.io/path: /metrics
+    prometheus.io/port: '2112'
+    prometheus.io/scheme: https
+    prometheus.io/scrape: 'true'
+    seccomp.security.alpha.kubernetes.io/pod: runtime/default
+  resourceVersion: '484232434'
+  name: modelmesh-serving-ovms-7f4f48649b-4k9rx
+  uid: 5ccc2c31-8c56-4ac3-ae02-c71db74375be
+  creationTimestamp: '2024-02-23T14:19:41Z'
+  managedFields:
+    - manager: ip-10-0-211-201
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-23T14:19:41Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:k8s.ovn.org/pod-networks': {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-23T14:19:41Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:prometheus.io/path': {}
+            'f:prometheus.io/port': {}
+            'f:prometheus.io/scheme': {}
+            'f:prometheus.io/scrape': {}
+          'f:generateName': {}
+          'f:labels':
+            .: {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/managed-by': {}
+            'f:app.kubernetes.io/name': {}
+            'f:modelmesh-service': {}
+            'f:name': {}
+            'f:pod-template-hash': {}
+          'f:ownerReferences':
+            .: {}
+            'k:{"uid":"c9a177a2-9382-4d66-b98a-cfcfb3c79234"}': {}
+        'f:spec':
+          'f:volumes':
+            .: {}
+            'k:{"name":"etcd-config"}':
+              .: {}
+              'f:name': {}
+              'f:secret':
+                .: {}
+                'f:defaultMode': {}
+                'f:secretName': {}
+            'k:{"name":"models-dir"}':
+              .: {}
+              'f:emptyDir':
+                .: {}
+                'f:sizeLimit': {}
+              'f:name': {}
+            'k:{"name":"proxy-tls"}':
+              .: {}
+              'f:name': {}
+              'f:secret':
+                .: {}
+                'f:defaultMode': {}
+                'f:secretName': {}
+            'k:{"name":"shm"}':
+              .: {}
+              'f:emptyDir':
+                .: {}
+                'f:medium': {}
+                'f:sizeLimit': {}
+              'f:name': {}
+            'k:{"name":"storage-config"}':
+              .: {}
+              'f:name': {}
+              'f:secret':
+                .: {}
+                'f:defaultMode': {}
+                'f:secretName': {}
+            'k:{"name":"tc-config"}':
+              .: {}
+              'f:configMap':
+                .: {}
+                'f:defaultMode': {}
+                'f:name': {}
+              'f:name': {}
+          'f:containers':
+            'k:{"name":"mm"}':
+              'f:image': {}
+              'f:volumeMounts':
+                .: {}
+                'k:{"mountPath":"/etc/watson/mmesh/config"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                'k:{"mountPath":"/opt/kserve/mmesh/etcd"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:readOnly': {}
+              'f:terminationMessagePolicy': {}
+              .: {}
+              'f:resources':
+                .: {}
+                'f:limits':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+                'f:requests':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+              'f:lifecycle':
+                .: {}
+                'f:preStop':
+                  .: {}
+                  'f:exec':
+                    .: {}
+                    'f:command': {}
+              'f:livenessProbe':
+                .: {}
+                'f:failureThreshold': {}
+                'f:httpGet':
+                  .: {}
+                  'f:path': {}
+                  'f:port': {}
+                  'f:scheme': {}
+                'f:initialDelaySeconds': {}
+                'f:periodSeconds': {}
+                'f:successThreshold': {}
+                'f:timeoutSeconds': {}
+              'f:env':
+                'k:{"name":"MM_SVC_GRPC_MAX_MSG_SIZE"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"WKUBE_POD_NAME"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:fieldRef': {}
+                'k:{"name":"INTERNAL_GRPC_PORT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"MM_SERVICE_NAME"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"MM_LOCATION"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:fieldRef': {}
+                'k:{"name":"MM_METRICS"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"MM_SVC_GRPC_PORT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"MM_KVSTORE_PREFIX"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                .: {}
+                'k:{"name":"MM_LABELS"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"WKUBE_POD_IPADDR"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:fieldRef': {}
+                'k:{"name":"KV_STORE"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"INTERNAL_SERVING_GRPC_PORT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"MM_DEFAULT_VMODEL_OWNER"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"MM_TYPE_CONSTRAINTS_PATH"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"MM_DATAPLANE_CONFIG_PATH"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"SHUTDOWN_TIMEOUT_MS"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+              'f:readinessProbe':
+                .: {}
+                'f:failureThreshold': {}
+                'f:httpGet':
+                  .: {}
+                  'f:path': {}
+                  'f:port': {}
+                  'f:scheme': {}
+                'f:initialDelaySeconds': {}
+                'f:periodSeconds': {}
+                'f:successThreshold': {}
+                'f:timeoutSeconds': {}
+              'f:securityContext':
+                .: {}
+                'f:capabilities':
+                  .: {}
+                  'f:drop': {}
+              'f:terminationMessagePath': {}
+              'f:imagePullPolicy': {}
+              'f:ports':
+                .: {}
+                'k:{"containerPort":2112,"protocol":"TCP"}':
+                  .: {}
+                  'f:containerPort': {}
+                  'f:name': {}
+                  'f:protocol': {}
+                'k:{"containerPort":8033,"protocol":"TCP"}':
+                  .: {}
+                  'f:containerPort': {}
+                  'f:name': {}
+                  'f:protocol': {}
+              'f:name': {}
+            'k:{"name":"oauth-proxy"}':
+              'f:image': {}
+              'f:volumeMounts':
+                .: {}
+                'k:{"mountPath":"/etc/tls/private"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+              'f:terminationMessagePolicy': {}
+              .: {}
+              'f:resources':
+                .: {}
+                'f:limits':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+                'f:requests':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+              'f:args': {}
+              'f:livenessProbe':
+                .: {}
+                'f:failureThreshold': {}
+                'f:httpGet':
+                  .: {}
+                  'f:path': {}
+                  'f:port': {}
+                  'f:scheme': {}
+                'f:initialDelaySeconds': {}
+                'f:periodSeconds': {}
+                'f:successThreshold': {}
+                'f:timeoutSeconds': {}
+              'f:readinessProbe':
+                .: {}
+                'f:failureThreshold': {}
+                'f:httpGet':
+                  .: {}
+                  'f:path': {}
+                  'f:port': {}
+                  'f:scheme': {}
+                'f:initialDelaySeconds': {}
+                'f:periodSeconds': {}
+                'f:successThreshold': {}
+                'f:timeoutSeconds': {}
+              'f:terminationMessagePath': {}
+              'f:imagePullPolicy': {}
+              'f:ports':
+                .: {}
+                'k:{"containerPort":8443,"protocol":"TCP"}':
+                  .: {}
+                  'f:containerPort': {}
+                  'f:name': {}
+                  'f:protocol': {}
+              'f:name': {}
+            'k:{"name":"ovms"}':
+              'f:image': {}
+              'f:volumeMounts':
+                .: {}
+                'k:{"mountPath":"/dev/shm"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                'k:{"mountPath":"/models"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+              'f:terminationMessagePolicy': {}
+              .: {}
+              'f:resources':
+                .: {}
+                'f:limits':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+                'f:requests':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+              'f:args': {}
+              'f:lifecycle':
+                .: {}
+                'f:preStop':
+                  .: {}
+                  'f:httpGet':
+                    .: {}
+                    'f:path': {}
+                    'f:port': {}
+                    'f:scheme': {}
+              'f:securityContext':
+                .: {}
+                'f:capabilities':
+                  .: {}
+                  'f:drop': {}
+              'f:terminationMessagePath': {}
+              'f:imagePullPolicy': {}
+              'f:name': {}
+            'k:{"name":"ovms-adapter"}':
+              'f:image': {}
+              'f:volumeMounts':
+                .: {}
+                'k:{"mountPath":"/models"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                'k:{"mountPath":"/storage-config"}':
+                  .: {}
+                  'f:mountPath': {}
+                  'f:name': {}
+                  'f:readOnly': {}
+              'f:terminationMessagePolicy': {}
+              .: {}
+              'f:resources':
+                .: {}
+                'f:limits':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+                'f:requests':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+              'f:lifecycle':
+                .: {}
+                'f:preStop':
+                  .: {}
+                  'f:httpGet':
+                    .: {}
+                    'f:path': {}
+                    'f:port': {}
+                    'f:scheme': {}
+              'f:command': {}
+              'f:env':
+                'k:{"name":"USE_EMBEDDED_PULLER"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"OVMS_FORCE_TARGET_DEVICE"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"RUNTIME_VERSION"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"RUNTIME_PORT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                .: {}
+                'k:{"name":"CONTAINER_MEM_REQ_BYTES"}':
+                  .: {}
+                  'f:name': {}
+                  'f:valueFrom':
+                    .: {}
+                    'f:resourceFieldRef': {}
+                'k:{"name":"RUNTIME_DATA_ENDPOINT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"ADAPTER_PORT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"LOADTIME_TIMEOUT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"MEM_BUFFER_BYTES"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+              'f:securityContext':
+                .: {}
+                'f:capabilities':
+                  .: {}
+                  'f:drop': {}
+              'f:terminationMessagePath': {}
+              'f:imagePullPolicy': {}
+              'f:name': {}
+            'k:{"name":"rest-proxy"}':
+              'f:image': {}
+              'f:terminationMessagePolicy': {}
+              .: {}
+              'f:resources':
+                .: {}
+                'f:limits':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+                'f:requests':
+                  .: {}
+                  'f:cpu': {}
+                  'f:memory': {}
+              'f:env':
+                .: {}
+                'k:{"name":"REST_PROXY_GRPC_MAX_MSG_SIZE_BYTES"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"REST_PROXY_GRPC_PORT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"REST_PROXY_LISTEN_PORT"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+                'k:{"name":"REST_PROXY_USE_TLS"}':
+                  .: {}
+                  'f:name': {}
+                  'f:value': {}
+              'f:terminationMessagePath': {}
+              'f:imagePullPolicy': {}
+              'f:ports':
+                .: {}
+                'k:{"containerPort":8008,"protocol":"TCP"}':
+                  .: {}
+                  'f:containerPort': {}
+                  'f:name': {}
+                  'f:protocol': {}
+              'f:name': {}
+          'f:dnsPolicy': {}
+          'f:serviceAccount': {}
+          'f:restartPolicy': {}
+          'f:schedulerName': {}
+          'f:terminationGracePeriodSeconds': {}
+          'f:serviceAccountName': {}
+          'f:enableServiceLinks': {}
+          'f:securityContext': {}
+          'f:affinity':
+            .: {}
+            'f:nodeAffinity':
+              .: {}
+              'f:requiredDuringSchedulingIgnoredDuringExecution': {}
+    - manager: multus
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-23T14:19:42Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:k8s.v1.cni.cncf.io/network-status': {}
+      subresource: status
+    - manager: kubelet
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-23T14:19:51Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:conditions':
+            'k:{"type":"ContainersReady"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Initialized"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Ready"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+          'f:containerStatuses': {}
+          'f:hostIP': {}
+          'f:phase': {}
+          'f:podIP': {}
+          'f:podIPs':
+            .: {}
+            'k:{"ip":"10.128.195.95"}':
+              .: {}
+              'f:ip': {}
+          'f:startTime': {}
+      subresource: status
+  namespace: fraud-detection-w-modelmesh
+  ownerReferences:
+    - apiVersion: apps/v1
+      kind: ReplicaSet
+      name: modelmesh-serving-ovms-7f4f48649b
+      uid: c9a177a2-9382-4d66-b98a-cfcfb3c79234
+      controller: true
+      blockOwnerDeletion: true
+  labels:
+    app.kubernetes.io/instance: modelmesh-controller
+    app.kubernetes.io/managed-by: modelmesh-controller
+    app.kubernetes.io/name: modelmesh-controller
+    modelmesh-service: modelmesh-serving
+    name: modelmesh-serving-ovms
+    pod-template-hash: 7f4f48649b
+spec:
+  restartPolicy: Always
+  serviceAccountName: modelmesh-serving-sa
+  imagePullSecrets:
+    - name: modelmesh-serving-sa-dockercfg-hdxb9
+  priority: 0
+  schedulerName: default-scheduler
+  enableServiceLinks: true
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                  - amd64
+                  - arm64
+  terminationGracePeriodSeconds: 90
+  preemptionPolicy: PreemptLowerPriority
+  nodeName: ip-10-0-241-68.ec2.internal
+  securityContext:
+    seLinuxOptions:
+      level: 's0:c38,c7'
+    fsGroup: 1001420000
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+    - resources:
+        limits:
+          cpu: '1'
+          memory: 512Mi
+        requests:
+          cpu: 50m
+          memory: 96Mi
+      terminationMessagePath: /dev/termination-log
+      name: rest-proxy
+      env:
+        - name: REST_PROXY_LISTEN_PORT
+          value: '8008'
+        - name: REST_PROXY_GRPC_PORT
+          value: '8033'
+        - name: REST_PROXY_USE_TLS
+          value: 'false'
+        - name: REST_PROXY_GRPC_MAX_MSG_SIZE_BYTES
+          value: '16777216'
+      securityContext:
+        capabilities:
+          drop:
+            - ALL
+        runAsUser: 1001420000
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false
+      ports:
+        - name: http
+          containerPort: 8008
+          protocol: TCP
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - name: kube-api-access-snq9q
+          readOnly: true
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      terminationMessagePolicy: File
+      image: >-
+        registry.redhat.io/rhoai/odh-mm-rest-proxy-rhel8@sha256:200d075020e9f393d190a9f480ce7276ec63eb1a6edbf142c997ac8919c0eff2
+    - resources:
+        limits:
+          cpu: 100m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 256Mi
+      readinessProbe:
+        httpGet:
+          path: /oauth/healthz
+          port: 8443
+          scheme: HTTPS
+        initialDelaySeconds: 5
+        timeoutSeconds: 1
+        periodSeconds: 5
+        successThreshold: 1
+        failureThreshold: 3
+      terminationMessagePath: /dev/termination-log
+      name: oauth-proxy
+      livenessProbe:
+        httpGet:
+          path: /oauth/healthz
+          port: 8443
+          scheme: HTTPS
+        initialDelaySeconds: 30
+        timeoutSeconds: 1
+        periodSeconds: 5
+        successThreshold: 1
+        failureThreshold: 3
+      securityContext:
+        capabilities:
+          drop:
+            - ALL
+        runAsUser: 1001420000
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false
+      ports:
+        - name: https
+          containerPort: 8443
+          protocol: TCP
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - name: proxy-tls
+          mountPath: /etc/tls/private
+        - name: kube-api-access-snq9q
+          readOnly: true
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      terminationMessagePolicy: File
+      image: >-
+        registry.redhat.io/openshift4/ose-oauth-proxy@sha256:4bef31eb993feb6f1096b51b4876c65a6fb1f4401fee97fa4f4542b6b7c9bc46
+      args:
+        - '--https-address=:8443'
+        - '--provider=openshift'
+        - '--openshift-service-account="modelmesh-serving-sa"'
+        - '--upstream=http://localhost:8008'
+        - '--tls-cert=/etc/tls/private/tls.crt'
+        - '--tls-key=/etc/tls/private/tls.key'
+        - '--cookie-secret=SECRET'
+        - >-
+          --openshift-delegate-urls={"/": {"namespace":
+          "fraud-detection-w-modelmesh", "resource": "services", "verb": "get"}}
+        - >-
+          --openshift-sar={"namespace": "fraud-detection-w-modelmesh",
+          "resource": "services", "verb": "get"}
+        - '--skip-auth-regex=''(^/metrics|^/apis/v1beta1/healthz)'''
+    - resources:
+        limits:
+          cpu: '2'
+          memory: 8Gi
+        requests:
+          cpu: '1'
+          memory: 4Gi
+      terminationMessagePath: /dev/termination-log
+      lifecycle:
+        preStop:
+          httpGet:
+            path: /prestop
+            port: 8090
+            scheme: HTTP
+      name: ovms
+      securityContext:
+        capabilities:
+          drop:
+            - ALL
+        runAsUser: 1001420000
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - name: models-dir
+          mountPath: /models
+        - name: shm
+          mountPath: /dev/shm
+        - name: kube-api-access-snq9q
+          readOnly: true
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      terminationMessagePolicy: File
+      image: >-
+        quay.io/modh/openvino_model_server@sha256:007304a96acd654ca5133c50990c6785464fcea44304c8a846d3279b9c83a9d4
+      args:
+        - '--port=8001'
+        - '--rest_port=8888'
+        - '--config_path=/models/model_config_list.json'
+        - '--file_system_poll_wait_seconds=0'
+        - '--grpc_bind_address=127.0.0.1'
+        - '--rest_bind_address=127.0.0.1'
+    - resources:
+        limits:
+          cpu: '2'
+          memory: 512Mi
+        requests:
+          cpu: 50m
+          memory: 96Mi
+      terminationMessagePath: /dev/termination-log
+      lifecycle:
+        preStop:
+          httpGet:
+            path: /prestop
+            port: 8090
+            scheme: HTTP
+      name: ovms-adapter
+      command:
+        - /opt/app/ovms-adapter
+      env:
+        - name: ADAPTER_PORT
+          value: '8085'
+        - name: RUNTIME_PORT
+          value: '8888'
+        - name: RUNTIME_DATA_ENDPOINT
+          value: 'port:8001'
+        - name: CONTAINER_MEM_REQ_BYTES
+          valueFrom:
+            resourceFieldRef:
+              containerName: ovms
+              resource: requests.memory
+              divisor: '0'
+        - name: MEM_BUFFER_BYTES
+          value: '134217728'
+        - name: LOADTIME_TIMEOUT
+          value: '90000'
+        - name: USE_EMBEDDED_PULLER
+          value: 'true'
+        - name: RUNTIME_VERSION
+          value: 007304a96acd654ca5133c50990c6785464fcea44304c8a846d3279b9c83a9d4
+        - name: OVMS_FORCE_TARGET_DEVICE
+          value: AUTO
+      securityContext:
+        capabilities:
+          drop:
+            - ALL
+        runAsUser: 1001420000
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - name: models-dir
+          mountPath: /models
+        - name: storage-config
+          readOnly: true
+          mountPath: /storage-config
+        - name: kube-api-access-snq9q
+          readOnly: true
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      terminationMessagePolicy: File
+      image: >-
+        registry.redhat.io/rhoai/odh-modelmesh-runtime-adapter-rhel8@sha256:18f2a43f2e12a0aadc3695f88d5b37593027fb1a2bb5dd7ef8e119b586d2958f
+    - resources:
+        limits:
+          cpu: '3'
+          memory: 448Mi
+        requests:
+          cpu: 300m
+          memory: 448Mi
+      readinessProbe:
+        httpGet:
+          path: /ready
+          port: 8089
+          scheme: HTTP
+        initialDelaySeconds: 5
+        timeoutSeconds: 1
+        periodSeconds: 5
+        successThreshold: 1
+        failureThreshold: 3
+      terminationMessagePath: /dev/termination-log
+      lifecycle:
+        preStop:
+          exec:
+            command:
+              - /opt/kserve/mmesh/stop.sh
+              - wait
+      name: mm
+      livenessProbe:
+        httpGet:
+          path: /live
+          port: 8089
+          scheme: HTTP
+        initialDelaySeconds: 90
+        timeoutSeconds: 5
+        periodSeconds: 30
+        successThreshold: 1
+        failureThreshold: 2
+      env:
+        - name: MM_SERVICE_NAME
+          value: modelmesh-serving
+        - name: MM_SVC_GRPC_PORT
+          value: '8033'
+        - name: WKUBE_POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: WKUBE_POD_IPADDR
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: MM_LOCATION
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.hostIP
+        - name: KV_STORE
+          value: 'etcd:/opt/kserve/mmesh/etcd/etcd_connection'
+        - name: MM_METRICS
+          value: 'prometheus:port=2112;scheme=https'
+        - name: SHUTDOWN_TIMEOUT_MS
+          value: '90000'
+        - name: INTERNAL_SERVING_GRPC_PORT
+          value: '8001'
+        - name: INTERNAL_GRPC_PORT
+          value: '8085'
+        - name: MM_SVC_GRPC_MAX_MSG_SIZE
+          value: '16777216'
+        - name: MM_KVSTORE_PREFIX
+          value: mm
+        - name: MM_DEFAULT_VMODEL_OWNER
+          value: ksp
+        - name: MM_LABELS
+          value: >-
+            mt:onnx,mt:onnx:1,mt:openvino_ir,mt:openvino_ir:opset1,mt:tensorflow,mt:tensorflow:2,pv:grpc-v1,rt:ovms
+        - name: MM_TYPE_CONSTRAINTS_PATH
+          value: /etc/watson/mmesh/config/type_constraints
+        - name: MM_DATAPLANE_CONFIG_PATH
+          value: /etc/watson/mmesh/config/dataplane_api_config
+      securityContext:
+        capabilities:
+          drop:
+            - ALL
+        runAsUser: 1001420000
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false
+      ports:
+        - name: grpc
+          containerPort: 8033
+          protocol: TCP
+        - name: prometheus
+          containerPort: 2112
+          protocol: TCP
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - name: tc-config
+          mountPath: /etc/watson/mmesh/config
+        - name: etcd-config
+          readOnly: true
+          mountPath: /opt/kserve/mmesh/etcd
+        - name: kube-api-access-snq9q
+          readOnly: true
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      terminationMessagePolicy: File
+      image: >-
+        registry.redhat.io/rhoai/odh-modelmesh-rhel8@sha256:6478ce1c4b8780a62f44517cb9c56a0f0b7b2d75ff1120bcc21fca4dea8f4c1e
+  serviceAccount: modelmesh-serving-sa
+  volumes:
+    - name: shm
+      emptyDir:
+        medium: Memory
+        sizeLimit: 2Gi
+    - name: proxy-tls
+      secret:
+        secretName: model-serving-proxy-tls
+        defaultMode: 420
+    - name: models-dir
+      emptyDir:
+        sizeLimit: 12Gi
+    - name: storage-config
+      secret:
+        secretName: storage-config
+        defaultMode: 420
+    - name: tc-config
+      configMap:
+        name: tc-config
+        defaultMode: 420
+    - name: etcd-config
+      secret:
+        secretName: model-serving-etcd
+        defaultMode: 420
+    - name: kube-api-access-snq9q
+      projected:
+        sources:
+          - serviceAccountToken:
+              expirationSeconds: 3607
+              path: token
+          - configMap:
+              name: kube-root-ca.crt
+              items:
+                - key: ca.crt
+                  path: ca.crt
+          - downwardAPI:
+              items:
+                - path: namespace
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+          - configMap:
+              name: openshift-service-ca.crt
+              items:
+                - key: service-ca.crt
+                  path: service-ca.crt
+        defaultMode: 420
+  dnsPolicy: ClusterFirst
+  tolerations:
+    - key: node.kubernetes.io/not-ready
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
+    - key: node.kubernetes.io/unreachable
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
+    - key: node.kubernetes.io/memory-pressure
+      operator: Exists
+      effect: NoSchedule
+status:
+  phase: Running
+  conditions:
+    - type: Initialized
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2024-02-23T14:19:41Z'
+    - type: Ready
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2024-02-23T14:19:51Z'
+    - type: ContainersReady
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2024-02-23T14:19:51Z'
+    - type: PodScheduled
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2024-02-23T14:19:41Z'
+  hostIP: 10.0.241.68
+  podIP: 10.128.195.95
+  podIPs:
+    - ip: 10.128.195.95
+  startTime: '2024-02-23T14:19:41Z'
+  containerStatuses:
+    - restartCount: 0
+      started: true
+      ready: true
+      name: mm
+      state:
+        running:
+          startedAt: '2024-02-23T14:19:43Z'
+      imageID: >-
+        registry.redhat.io/rhoai/odh-modelmesh-rhel8@sha256:6478ce1c4b8780a62f44517cb9c56a0f0b7b2d75ff1120bcc21fca4dea8f4c1e
+      image: >-
+        registry.redhat.io/rhoai/odh-modelmesh-rhel8@sha256:6478ce1c4b8780a62f44517cb9c56a0f0b7b2d75ff1120bcc21fca4dea8f4c1e
+      lastState: {}
+      containerID: 'cri-o://a21ff11017e47bfe3584af11a8ff66642b5d52e3dbd78b544efc99c7b34d0c1e'
+    - restartCount: 0
+      started: true
+      ready: true
+      name: oauth-proxy
+      state:
+        running:
+          startedAt: '2024-02-23T14:19:42Z'
+      imageID: >-
+        registry.redhat.io/openshift4/ose-oauth-proxy@sha256:4bef31eb993feb6f1096b51b4876c65a6fb1f4401fee97fa4f4542b6b7c9bc46
+      image: >-
+        registry.redhat.io/openshift4/ose-oauth-proxy@sha256:4bef31eb993feb6f1096b51b4876c65a6fb1f4401fee97fa4f4542b6b7c9bc46
+      lastState: {}
+      containerID: 'cri-o://a6255e81d006ca8abcafb555737781efd3db0666fe71a03d2ed7bf21b574ca47'
+    - restartCount: 0
+      started: true
+      ready: true
+      name: ovms
+      state:
+        running:
+          startedAt: '2024-02-23T14:19:42Z'
+      imageID: >-
+        quay.io/modh/openvino_model_server@sha256:007304a96acd654ca5133c50990c6785464fcea44304c8a846d3279b9c83a9d4
+      image: >-
+        quay.io/modh/openvino_model_server@sha256:007304a96acd654ca5133c50990c6785464fcea44304c8a846d3279b9c83a9d4
+      lastState: {}
+      containerID: 'cri-o://ebee3c62e00f9529d566288a06cf025c2b2a9b2a625feb299dafa1558a673dc4'
+    - restartCount: 0
+      started: true
+      ready: true
+      name: ovms-adapter
+      state:
+        running:
+          startedAt: '2024-02-23T14:19:43Z'
+      imageID: >-
+        registry.redhat.io/rhoai/odh-modelmesh-runtime-adapter-rhel8@sha256:155ee74c775d631c8832b71bbff8aa7ea810f2ffbaec32559fca5c4d6a8eb10c
+      image: >-
+        registry.redhat.io/rhoai/odh-modelmesh-runtime-adapter-rhel8@sha256:18f2a43f2e12a0aadc3695f88d5b37593027fb1a2bb5dd7ef8e119b586d2958f
+      lastState: {}
+      containerID: 'cri-o://cf8c6d557649dc473adf15706da9373d6a0199e940bf583147d40ee0ed51b42b'
+    - restartCount: 0
+      started: true
+      ready: true
+      name: rest-proxy
+      state:
+        running:
+          startedAt: '2024-02-23T14:19:42Z'
+      imageID: >-
+        registry.redhat.io/rhoai/odh-mm-rest-proxy-rhel8@sha256:200d075020e9f393d190a9f480ce7276ec63eb1a6edbf142c997ac8919c0eff2
+      image: >-
+        registry.redhat.io/rhoai/odh-mm-rest-proxy-rhel8@sha256:200d075020e9f393d190a9f480ce7276ec63eb1a6edbf142c997ac8919c0eff2
+      lastState: {}
+      containerID: 'cri-o://9932687d11a3f53f135f872441cf82105c947f957316013662b0b48fa63f71f5'
+  qosClass: Burstable

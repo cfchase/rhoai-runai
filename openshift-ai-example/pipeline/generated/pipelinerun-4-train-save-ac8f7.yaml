@@ -1,0 +1,943 @@
+﻿apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    pipelines.kubeflow.org/run_name: Elyra Run
+    tekton.dev/artifact_items: >-
+      {"run-a-file": [["mlpipeline-metrics", "/tmp/mlpipeline-metrics.json"],
+      ["mlpipeline-ui-metadata", "/tmp/mlpipeline-ui-metadata.json"]],
+      "run-a-file-2": [["mlpipeline-metrics", "/tmp/mlpipeline-metrics.json"],
+      ["mlpipeline-ui-metadata", "/tmp/mlpipeline-ui-metadata.json"]]}
+    tekton.dev/artifact_bucket: pipeline-artifacts
+    tekton.dev/template: ''
+    sidecar.istio.io/inject: 'false'
+    tekton.dev/artifact_endpoint_scheme: 'http://'
+    tekton.dev/output_artifacts: >-
+      {"run-a-file": [{"key":
+      "artifacts/$PIPELINERUN/run-a-file/mlpipeline-metrics.tgz", "name":
+      "mlpipeline-metrics", "path": "/tmp/mlpipeline-metrics.json"}, {"key":
+      "artifacts/$PIPELINERUN/run-a-file/mlpipeline-ui-metadata.tgz", "name":
+      "mlpipeline-ui-metadata", "path": "/tmp/mlpipeline-ui-metadata.json"}],
+      "run-a-file-2": [{"key":
+      "artifacts/$PIPELINERUN/run-a-file-2/mlpipeline-metrics.tgz", "name":
+      "mlpipeline-metrics", "path": "/tmp/mlpipeline-metrics.json"}, {"key":
+      "artifacts/$PIPELINERUN/run-a-file-2/mlpipeline-ui-metadata.tgz", "name":
+      "mlpipeline-ui-metadata", "path": "/tmp/mlpipeline-ui-metadata.json"}]}
+    tekton.dev/artifact_endpoint: >-
+      https://minio-s3-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com
+    pipelines.kubeflow.org/pipeline_spec: '{"name": "4 Train Save"}'
+    pipelines.kubeflow.org/big_data_passing_format: >-
+      $(workspaces.$TASK_NAME.path)/artifacts/4-train-save-ac8f7/$TASKRUN_NAME/$TASK_PARAM_NAME
+    tekton.dev/input_artifacts: '{}'
+  resourceVersion: '484210122'
+  name: 4-train-save-ac8f7
+  uid: a9fbb1a5-aba6-4cd4-9c1e-33b4c2d8ef20
+  creationTimestamp: '2024-02-23T14:08:08Z'
+  generation: 1
+  managedFields:
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:tekton.dev/artifact_endpoint': {}
+            'f:pipelines.kubeflow.org/pipeline_spec': {}
+            'f:pipelines.kubeflow.org/run_name': {}
+            .: {}
+            'f:pipelines.kubeflow.org/big_data_passing_format': {}
+            'f:tekton.dev/artifact_items': {}
+            'f:tekton.dev/input_artifacts': {}
+            'f:tekton.dev/template': {}
+            'f:sidecar.istio.io/inject': {}
+            'f:tekton.dev/artifact_bucket': {}
+            'f:tekton.dev/artifact_endpoint_scheme': {}
+            'f:tekton.dev/output_artifacts': {}
+          'f:labels':
+            .: {}
+            'f:custom.tekton.dev/originalPipelineRun': {}
+            'f:pipeline/runid': {}
+            'f:pipelines.kubeflow.org/generation': {}
+            'f:pipelines.kubeflow.org/pipelinename': {}
+        'f:spec':
+          .: {}
+          'f:pipelineSpec':
+            .: {}
+            'f:tasks': {}
+          'f:serviceAccountName': {}
+      manager: apiserver
+      operation: Update
+      time: '2024-02-23T14:08:08Z'
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:finalizers':
+            .: {}
+            'v:"chains.tekton.dev/pipelinerun"': {}
+      manager: openshift-pipelines-chains-controller
+      operation: Update
+      time: '2024-02-23T14:08:09Z'
+    - apiVersion: tekton.dev/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            'f:tekton.dev/pipeline': {}
+      manager: openshift-pipelines-controller
+      operation: Update
+      time: '2024-02-23T14:08:09Z'
+    - apiVersion: tekton.dev/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:childReferences': {}
+          'f:conditions': {}
+          'f:pipelineSpec':
+            .: {}
+            'f:tasks': {}
+          'f:startTime': {}
+      manager: openshift-pipelines-controller
+      operation: Update
+      subresource: status
+      time: '2024-02-23T14:08:09Z'
+  namespace: fraud-detection
+  finalizers:
+    - chains.tekton.dev/pipelinerun
+  labels:
+    custom.tekton.dev/originalPipelineRun: 4-train-save-ac8f7
+    pipeline/runid: ac8f702c-37c4-4e5b-b4d2-c907829f7f0c
+    pipelines.kubeflow.org/generation: ''
+    pipelines.kubeflow.org/pipelinename: ''
+    tekton.dev/pipeline: 4-train-save-ac8f7
+spec:
+  pipelineSpec:
+    tasks:
+      - name: run-a-file
+        taskSpec:
+          metadata:
+            annotations:
+              elyra/node-file-name: test-drive/fraud-detection/1_experiment_train.ipynb
+              elyra/pipeline-source: 4 Train Save.pipeline
+              pipelines.kubeflow.org/component_spec_digest: >-
+                {"name": "Run a file", "outputs": [], "version": "Run a
+                file@sha256=385654eb4ff4bb1601c3fa76584a790b0932207f520a3e1542d158214ddbb171"}
+              pipelines.kubeflow.org/task_display_name: 1_experiment_train
+            labels:
+              elyra/experiment-name: ''
+              elyra/node-name: 1_experiment_train
+              elyra/node-type: notebook-script
+              elyra/pipeline-name: 4_Train_Save
+              elyra/pipeline-version: ''
+              pipelines.kubeflow.org/cache_enabled: 'true'
+          spec: null
+          stepTemplate:
+            computeResources: {}
+            volumeMounts:
+              - mountPath: /tmp
+                name: mlpipeline-metrics
+          steps:
+            - args:
+                - >
+                  sh -c "mkdir -p ./jupyter-work-dir && cd ./jupyter-work-dir"
+
+                  sh -c "echo 'Downloading
+                  file:///opt/app-root/bin/utils/bootstrapper.py' && curl --fail
+                  -H 'Cache-Control: no-cache' -L
+                  file:///opt/app-root/bin/utils/bootstrapper.py --output
+                  bootstrapper.py"
+
+                  sh -c "echo 'Downloading
+                  file:///opt/app-root/bin/utils/requirements-elyra.txt' && curl
+                  --fail -H 'Cache-Control: no-cache' -L
+                  file:///opt/app-root/bin/utils/requirements-elyra.txt --output
+                  requirements-elyra.txt"
+
+                  sh -c "python3 -m pip install  packaging && python3 -m pip
+                  freeze > requirements-current.txt && python3 bootstrapper.py
+                  --pipeline-name '4 Train Save' --cos-endpoint
+                  'https://minio-s3-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com'
+                  --cos-bucket 'pipeline-artifacts' --cos-directory '4 Train
+                  Save-0214190011' --cos-dependencies-archive
+                  '1_experiment_train-fd0d8464-1fa6-4d29-9da5-2b185a7cc8f3.tar.gz'
+                  --file 'test-drive/fraud-detection/1_experiment_train.ipynb'
+                  --outputs 'models/fraud/1/model.onnx' "
+              command:
+                - sh
+                - '-c'
+              computeResources: {}
+              env:
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_ACCESS_KEY_ID
+                      name: secret-f63r3j
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_SECRET_ACCESS_KEY
+                      name: secret-f63r3j
+                - name: ELYRA_RUNTIME_ENV
+                  value: kfp
+                - name: ELYRA_ENABLE_PIPELINE_INFO
+                  value: 'True'
+                - name: ELYRA_WRITABLE_CONTAINER_DIR
+                  value: /tmp
+                - name: ELYRA_RUN_NAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''pipelines.kubeflow.org/run_name'']'
+              image: >-
+                quay.io/modh/runtime-images@sha256:647c65023e62f292161640e6420d564ac618ed441b5b542e6fd7d81497e5f28a
+              imagePullPolicy: IfNotPresent
+              name: main
+            - args:
+                - >
+                  #!/usr/bin/env sh
+
+                  push_artifact() {
+                      workspace_dir=$(echo $(context.taskRun.name) | sed -e "s/$(context.pipeline.name)-//g")
+                      workspace_dest=/workspace/${workspace_dir}/artifacts/$(context.pipelineRun.name)/$(context.taskRun.name)
+                      artifact_name=$(basename $2)
+
+                      aws_cp() {
+
+                        aws s3 --endpoint https://minio-s3-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com cp $1.tgz s3://pipeline-artifacts/artifacts/$PIPELINERUN/$PIPELINETASK/$1.tgz
+
+                      }
+
+                      if [ -f "$workspace_dest/$artifact_name" ]; then
+                          echo sending to: ${workspace_dest}/${artifact_name}
+                          tar -cvzf $1.tgz -C ${workspace_dest} ${artifact_name}
+                          aws_cp $1
+                      elif [ -f "$2" ]; then
+                          tar -cvzf $1.tgz -C $(dirname $2) ${artifact_name}
+                          aws_cp $1
+                      else
+                          echo "$2 file does not exist. Skip artifact tracking for $1"
+                      fi
+                  }
+
+                  push_log() {
+                      cat /var/log/containers/$PODNAME*$NAMESPACE*step-main*.log > step-main.log
+                      push_artifact main-log step-main.log
+                  }
+
+                  strip_eof() {
+                      if [ -f "$2" ]; then
+                          awk 'NF' $2 | head -c -1 > $1_temp_save && cp $1_temp_save $2
+                      fi
+                  }
+
+                  push_artifact "mlpipeline-metrics"
+                  "/tmp/mlpipeline-metrics.json"
+
+                  push_artifact "mlpipeline-ui-metadata"
+                  "/tmp/mlpipeline-ui-metadata.json"
+
+                  strip_eof mlpipeline-metrics /tmp/mlpipeline-metrics.json
+
+                  strip_eof mlpipeline-ui-metadata
+                  /tmp/mlpipeline-ui-metadata.json
+              command:
+                - sh
+                - '-c'
+              computeResources: {}
+              env:
+                - name: ARTIFACT_BUCKET
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''tekton.dev/artifact_bucket'']'
+                - name: ARTIFACT_ENDPOINT
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''tekton.dev/artifact_endpoint'']'
+                - name: ARTIFACT_ENDPOINT_SCHEME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: >-
+                        metadata.annotations['tekton.dev/artifact_endpoint_scheme']
+                - name: ARTIFACT_ITEMS
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''tekton.dev/artifact_items'']'
+                - name: PIPELINETASK
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.labels[''tekton.dev/pipelineTask'']'
+                - name: PIPELINERUN
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.labels[''tekton.dev/pipelineRun'']'
+                - name: PODNAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.name
+                - name: NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.namespace
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      key: accesskey
+                      name: mlpipeline-minio-artifact
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      key: secretkey
+                      name: mlpipeline-minio-artifact
+                - name: ARCHIVE_LOGS
+                  value: 'false'
+                - name: TRACK_ARTIFACTS
+                  value: 'true'
+                - name: STRIP_EOF
+                  value: 'true'
+              image: >-
+                registry.redhat.io/rhoai/odh-ml-pipelines-artifact-manager-rhel8@sha256:83248106ac34fb8b9a17fc372f7b6172ef224b79a2627add9e97c7551b2da444
+              name: copy-artifacts
+          volumes:
+            - emptyDir: {}
+              name: mlpipeline-metrics
+      - name: run-a-file-2
+        runAfter:
+          - run-a-file
+        taskSpec:
+          metadata:
+            annotations:
+              elyra/node-file-name: test-drive/fraud-detection/2_save_model.ipynb
+              elyra/pipeline-source: 4 Train Save.pipeline
+              pipelines.kubeflow.org/component_spec_digest: >-
+                {"name": "Run a file", "outputs": [], "version": "Run a
+                file@sha256=48b2fc1ede811426dfa010c01dd5311c5923f304bd648597d9bc03b91bcd4341"}
+              pipelines.kubeflow.org/task_display_name: 2_save_model
+            labels:
+              elyra/experiment-name: ''
+              elyra/node-name: 2_save_model
+              elyra/node-type: notebook-script
+              elyra/pipeline-name: 4_Train_Save
+              elyra/pipeline-version: ''
+              pipelines.kubeflow.org/cache_enabled: 'true'
+          spec: null
+          stepTemplate:
+            computeResources: {}
+            volumeMounts:
+              - mountPath: /tmp
+                name: mlpipeline-metrics
+          steps:
+            - args:
+                - >
+                  sh -c "mkdir -p ./jupyter-work-dir && cd ./jupyter-work-dir"
+
+                  sh -c "echo 'Downloading
+                  file:///opt/app-root/bin/utils/bootstrapper.py' && curl --fail
+                  -H 'Cache-Control: no-cache' -L
+                  file:///opt/app-root/bin/utils/bootstrapper.py --output
+                  bootstrapper.py"
+
+                  sh -c "echo 'Downloading
+                  file:///opt/app-root/bin/utils/requirements-elyra.txt' && curl
+                  --fail -H 'Cache-Control: no-cache' -L
+                  file:///opt/app-root/bin/utils/requirements-elyra.txt --output
+                  requirements-elyra.txt"
+
+                  sh -c "python3 -m pip install  packaging && python3 -m pip
+                  freeze > requirements-current.txt && python3 bootstrapper.py
+                  --pipeline-name '4 Train Save' --cos-endpoint
+                  'https://minio-s3-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com'
+                  --cos-bucket 'pipeline-artifacts' --cos-directory '4 Train
+                  Save-0214190011' --cos-dependencies-archive
+                  '2_save_model-4fd1c6cc-93e1-4294-ae0a-2d1125cff8ca.tar.gz'
+                  --file 'test-drive/fraud-detection/2_save_model.ipynb'
+                  --inputs 'models/fraud/1/model.onnx' "
+              command:
+                - sh
+                - '-c'
+              computeResources: {}
+              env:
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_ACCESS_KEY_ID
+                      name: secret-f63r3j
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_SECRET_ACCESS_KEY
+                      name: secret-f63r3j
+                - name: ELYRA_RUNTIME_ENV
+                  value: kfp
+                - name: ELYRA_ENABLE_PIPELINE_INFO
+                  value: 'True'
+                - name: ELYRA_WRITABLE_CONTAINER_DIR
+                  value: /tmp
+                - name: ELYRA_RUN_NAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''pipelines.kubeflow.org/run_name'']'
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_ACCESS_KEY_ID
+                      name: aws-connection-my-storage
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_SECRET_ACCESS_KEY
+                      name: aws-connection-my-storage
+                - name: AWS_S3_ENDPOINT
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_S3_ENDPOINT
+                      name: aws-connection-my-storage
+                - name: AWS_DEFAULT_REGION
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_DEFAULT_REGION
+                      name: aws-connection-my-storage
+                - name: AWS_S3_BUCKET
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_S3_BUCKET
+                      name: aws-connection-my-storage
+              image: >-
+                quay.io/modh/runtime-images@sha256:647c65023e62f292161640e6420d564ac618ed441b5b542e6fd7d81497e5f28a
+              imagePullPolicy: IfNotPresent
+              name: main
+            - args:
+                - >
+                  #!/usr/bin/env sh
+
+                  push_artifact() {
+                      workspace_dir=$(echo $(context.taskRun.name) | sed -e "s/$(context.pipeline.name)-//g")
+                      workspace_dest=/workspace/${workspace_dir}/artifacts/$(context.pipelineRun.name)/$(context.taskRun.name)
+                      artifact_name=$(basename $2)
+
+                      aws_cp() {
+
+                        aws s3 --endpoint https://minio-s3-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com cp $1.tgz s3://pipeline-artifacts/artifacts/$PIPELINERUN/$PIPELINETASK/$1.tgz
+
+                      }
+
+                      if [ -f "$workspace_dest/$artifact_name" ]; then
+                          echo sending to: ${workspace_dest}/${artifact_name}
+                          tar -cvzf $1.tgz -C ${workspace_dest} ${artifact_name}
+                          aws_cp $1
+                      elif [ -f "$2" ]; then
+                          tar -cvzf $1.tgz -C $(dirname $2) ${artifact_name}
+                          aws_cp $1
+                      else
+                          echo "$2 file does not exist. Skip artifact tracking for $1"
+                      fi
+                  }
+
+                  push_log() {
+                      cat /var/log/containers/$PODNAME*$NAMESPACE*step-main*.log > step-main.log
+                      push_artifact main-log step-main.log
+                  }
+
+                  strip_eof() {
+                      if [ -f "$2" ]; then
+                          awk 'NF' $2 | head -c -1 > $1_temp_save && cp $1_temp_save $2
+                      fi
+                  }
+
+                  push_artifact "mlpipeline-metrics"
+                  "/tmp/mlpipeline-metrics.json"
+
+                  push_artifact "mlpipeline-ui-metadata"
+                  "/tmp/mlpipeline-ui-metadata.json"
+
+                  strip_eof mlpipeline-metrics /tmp/mlpipeline-metrics.json
+
+                  strip_eof mlpipeline-ui-metadata
+                  /tmp/mlpipeline-ui-metadata.json
+              command:
+                - sh
+                - '-c'
+              computeResources: {}
+              env:
+                - name: ARTIFACT_BUCKET
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''tekton.dev/artifact_bucket'']'
+                - name: ARTIFACT_ENDPOINT
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''tekton.dev/artifact_endpoint'']'
+                - name: ARTIFACT_ENDPOINT_SCHEME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: >-
+                        metadata.annotations['tekton.dev/artifact_endpoint_scheme']
+                - name: ARTIFACT_ITEMS
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''tekton.dev/artifact_items'']'
+                - name: PIPELINETASK
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.labels[''tekton.dev/pipelineTask'']'
+                - name: PIPELINERUN
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.labels[''tekton.dev/pipelineRun'']'
+                - name: PODNAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.name
+                - name: NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.namespace
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      key: accesskey
+                      name: mlpipeline-minio-artifact
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      key: secretkey
+                      name: mlpipeline-minio-artifact
+                - name: ARCHIVE_LOGS
+                  value: 'false'
+                - name: TRACK_ARTIFACTS
+                  value: 'true'
+                - name: STRIP_EOF
+                  value: 'true'
+              image: >-
+                registry.redhat.io/rhoai/odh-ml-pipelines-artifact-manager-rhel8@sha256:83248106ac34fb8b9a17fc372f7b6172ef224b79a2627add9e97c7551b2da444
+              name: copy-artifacts
+          volumes:
+            - emptyDir: {}
+              name: mlpipeline-metrics
+  taskRunTemplate:
+    serviceAccountName: pipeline-runner-pipelines-definition
+  timeouts:
+    pipeline: 1h0m0s
+status:
+  childReferences:
+    - apiVersion: tekton.dev/v1
+      kind: TaskRun
+      name: 4-train-save-ac8f7-run-a-file
+      pipelineTaskName: run-a-file
+  conditions:
+    - lastTransitionTime: '2024-02-23T14:08:09Z'
+      message: 'Tasks Completed: 0 (Failed: 0, Cancelled 0), Incomplete: 2, Skipped: 0'
+      reason: Running
+      status: Unknown
+      type: Succeeded
+  pipelineSpec:
+    tasks:
+      - name: run-a-file
+        taskSpec:
+          metadata:
+            annotations:
+              elyra/node-file-name: test-drive/fraud-detection/1_experiment_train.ipynb
+              elyra/pipeline-source: 4 Train Save.pipeline
+              pipelines.kubeflow.org/component_spec_digest: >-
+                {"name": "Run a file", "outputs": [], "version": "Run a
+                file@sha256=385654eb4ff4bb1601c3fa76584a790b0932207f520a3e1542d158214ddbb171"}
+              pipelines.kubeflow.org/task_display_name: 1_experiment_train
+            labels:
+              elyra/experiment-name: ''
+              elyra/node-name: 1_experiment_train
+              elyra/node-type: notebook-script
+              elyra/pipeline-name: 4_Train_Save
+              elyra/pipeline-version: ''
+              pipelines.kubeflow.org/cache_enabled: 'true'
+          spec: null
+          stepTemplate:
+            computeResources: {}
+            volumeMounts:
+              - mountPath: /tmp
+                name: mlpipeline-metrics
+          steps:
+            - args:
+                - >
+                  sh -c "mkdir -p ./jupyter-work-dir && cd ./jupyter-work-dir"
+
+                  sh -c "echo 'Downloading
+                  file:///opt/app-root/bin/utils/bootstrapper.py' && curl --fail
+                  -H 'Cache-Control: no-cache' -L
+                  file:///opt/app-root/bin/utils/bootstrapper.py --output
+                  bootstrapper.py"
+
+                  sh -c "echo 'Downloading
+                  file:///opt/app-root/bin/utils/requirements-elyra.txt' && curl
+                  --fail -H 'Cache-Control: no-cache' -L
+                  file:///opt/app-root/bin/utils/requirements-elyra.txt --output
+                  requirements-elyra.txt"
+
+                  sh -c "python3 -m pip install  packaging && python3 -m pip
+                  freeze > requirements-current.txt && python3 bootstrapper.py
+                  --pipeline-name '4 Train Save' --cos-endpoint
+                  'https://minio-s3-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com'
+                  --cos-bucket 'pipeline-artifacts' --cos-directory '4 Train
+                  Save-0214190011' --cos-dependencies-archive
+                  '1_experiment_train-fd0d8464-1fa6-4d29-9da5-2b185a7cc8f3.tar.gz'
+                  --file 'test-drive/fraud-detection/1_experiment_train.ipynb'
+                  --outputs 'models/fraud/1/model.onnx' "
+              command:
+                - sh
+                - '-c'
+              computeResources: {}
+              env:
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_ACCESS_KEY_ID
+                      name: secret-f63r3j
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_SECRET_ACCESS_KEY
+                      name: secret-f63r3j
+                - name: ELYRA_RUNTIME_ENV
+                  value: kfp
+                - name: ELYRA_ENABLE_PIPELINE_INFO
+                  value: 'True'
+                - name: ELYRA_WRITABLE_CONTAINER_DIR
+                  value: /tmp
+                - name: ELYRA_RUN_NAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''pipelines.kubeflow.org/run_name'']'
+              image: >-
+                quay.io/modh/runtime-images@sha256:647c65023e62f292161640e6420d564ac618ed441b5b542e6fd7d81497e5f28a
+              imagePullPolicy: IfNotPresent
+              name: main
+              volumeMounts:
+                - mountPath: /tmp
+                  name: mlpipeline-metrics
+            - args:
+                - >
+                  #!/usr/bin/env sh
+
+                  push_artifact() {
+                      workspace_dir=$(echo $(context.taskRun.name) | sed -e "s/4-train-save-ac8f7-//g")
+                      workspace_dest=/workspace/${workspace_dir}/artifacts/4-train-save-ac8f7/$(context.taskRun.name)
+                      artifact_name=$(basename $2)
+
+                      aws_cp() {
+
+                        aws s3 --endpoint https://minio-s3-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com cp $1.tgz s3://pipeline-artifacts/artifacts/$PIPELINERUN/$PIPELINETASK/$1.tgz
+
+                      }
+
+                      if [ -f "$workspace_dest/$artifact_name" ]; then
+                          echo sending to: ${workspace_dest}/${artifact_name}
+                          tar -cvzf $1.tgz -C ${workspace_dest} ${artifact_name}
+                          aws_cp $1
+                      elif [ -f "$2" ]; then
+                          tar -cvzf $1.tgz -C $(dirname $2) ${artifact_name}
+                          aws_cp $1
+                      else
+                          echo "$2 file does not exist. Skip artifact tracking for $1"
+                      fi
+                  }
+
+                  push_log() {
+                      cat /var/log/containers/$PODNAME*$NAMESPACE*step-main*.log > step-main.log
+                      push_artifact main-log step-main.log
+                  }
+
+                  strip_eof() {
+                      if [ -f "$2" ]; then
+                          awk 'NF' $2 | head -c -1 > $1_temp_save && cp $1_temp_save $2
+                      fi
+                  }
+
+                  push_artifact "mlpipeline-metrics"
+                  "/tmp/mlpipeline-metrics.json"
+
+                  push_artifact "mlpipeline-ui-metadata"
+                  "/tmp/mlpipeline-ui-metadata.json"
+
+                  strip_eof mlpipeline-metrics /tmp/mlpipeline-metrics.json
+
+                  strip_eof mlpipeline-ui-metadata
+                  /tmp/mlpipeline-ui-metadata.json
+              command:
+                - sh
+                - '-c'
+              computeResources: {}
+              env:
+                - name: ARTIFACT_BUCKET
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''tekton.dev/artifact_bucket'']'
+                - name: ARTIFACT_ENDPOINT
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''tekton.dev/artifact_endpoint'']'
+                - name: ARTIFACT_ENDPOINT_SCHEME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: >-
+                        metadata.annotations['tekton.dev/artifact_endpoint_scheme']
+                - name: ARTIFACT_ITEMS
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''tekton.dev/artifact_items'']'
+                - name: PIPELINETASK
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.labels[''tekton.dev/pipelineTask'']'
+                - name: PIPELINERUN
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.labels[''tekton.dev/pipelineRun'']'
+                - name: PODNAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.name
+                - name: NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.namespace
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      key: accesskey
+                      name: mlpipeline-minio-artifact
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      key: secretkey
+                      name: mlpipeline-minio-artifact
+                - name: ARCHIVE_LOGS
+                  value: 'false'
+                - name: TRACK_ARTIFACTS
+                  value: 'true'
+                - name: STRIP_EOF
+                  value: 'true'
+              image: >-
+                registry.redhat.io/rhoai/odh-ml-pipelines-artifact-manager-rhel8@sha256:83248106ac34fb8b9a17fc372f7b6172ef224b79a2627add9e97c7551b2da444
+              name: copy-artifacts
+              volumeMounts:
+                - mountPath: /tmp
+                  name: mlpipeline-metrics
+          volumes:
+            - emptyDir: {}
+              name: mlpipeline-metrics
+      - name: run-a-file-2
+        runAfter:
+          - run-a-file
+        taskSpec:
+          metadata:
+            annotations:
+              elyra/node-file-name: test-drive/fraud-detection/2_save_model.ipynb
+              elyra/pipeline-source: 4 Train Save.pipeline
+              pipelines.kubeflow.org/component_spec_digest: >-
+                {"name": "Run a file", "outputs": [], "version": "Run a
+                file@sha256=48b2fc1ede811426dfa010c01dd5311c5923f304bd648597d9bc03b91bcd4341"}
+              pipelines.kubeflow.org/task_display_name: 2_save_model
+            labels:
+              elyra/experiment-name: ''
+              elyra/node-name: 2_save_model
+              elyra/node-type: notebook-script
+              elyra/pipeline-name: 4_Train_Save
+              elyra/pipeline-version: ''
+              pipelines.kubeflow.org/cache_enabled: 'true'
+          spec: null
+          stepTemplate:
+            computeResources: {}
+            volumeMounts:
+              - mountPath: /tmp
+                name: mlpipeline-metrics
+          steps:
+            - args:
+                - >
+                  sh -c "mkdir -p ./jupyter-work-dir && cd ./jupyter-work-dir"
+
+                  sh -c "echo 'Downloading
+                  file:///opt/app-root/bin/utils/bootstrapper.py' && curl --fail
+                  -H 'Cache-Control: no-cache' -L
+                  file:///opt/app-root/bin/utils/bootstrapper.py --output
+                  bootstrapper.py"
+
+                  sh -c "echo 'Downloading
+                  file:///opt/app-root/bin/utils/requirements-elyra.txt' && curl
+                  --fail -H 'Cache-Control: no-cache' -L
+                  file:///opt/app-root/bin/utils/requirements-elyra.txt --output
+                  requirements-elyra.txt"
+
+                  sh -c "python3 -m pip install  packaging && python3 -m pip
+                  freeze > requirements-current.txt && python3 bootstrapper.py
+                  --pipeline-name '4 Train Save' --cos-endpoint
+                  'https://minio-s3-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com'
+                  --cos-bucket 'pipeline-artifacts' --cos-directory '4 Train
+                  Save-0214190011' --cos-dependencies-archive
+                  '2_save_model-4fd1c6cc-93e1-4294-ae0a-2d1125cff8ca.tar.gz'
+                  --file 'test-drive/fraud-detection/2_save_model.ipynb'
+                  --inputs 'models/fraud/1/model.onnx' "
+              command:
+                - sh
+                - '-c'
+              computeResources: {}
+              env:
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_ACCESS_KEY_ID
+                      name: secret-f63r3j
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_SECRET_ACCESS_KEY
+                      name: secret-f63r3j
+                - name: ELYRA_RUNTIME_ENV
+                  value: kfp
+                - name: ELYRA_ENABLE_PIPELINE_INFO
+                  value: 'True'
+                - name: ELYRA_WRITABLE_CONTAINER_DIR
+                  value: /tmp
+                - name: ELYRA_RUN_NAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''pipelines.kubeflow.org/run_name'']'
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_ACCESS_KEY_ID
+                      name: aws-connection-my-storage
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_SECRET_ACCESS_KEY
+                      name: aws-connection-my-storage
+                - name: AWS_S3_ENDPOINT
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_S3_ENDPOINT
+                      name: aws-connection-my-storage
+                - name: AWS_DEFAULT_REGION
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_DEFAULT_REGION
+                      name: aws-connection-my-storage
+                - name: AWS_S3_BUCKET
+                  valueFrom:
+                    secretKeyRef:
+                      key: AWS_S3_BUCKET
+                      name: aws-connection-my-storage
+              image: >-
+                quay.io/modh/runtime-images@sha256:647c65023e62f292161640e6420d564ac618ed441b5b542e6fd7d81497e5f28a
+              imagePullPolicy: IfNotPresent
+              name: main
+              volumeMounts:
+                - mountPath: /tmp
+                  name: mlpipeline-metrics
+            - args:
+                - >
+                  #!/usr/bin/env sh
+
+                  push_artifact() {
+                      workspace_dir=$(echo $(context.taskRun.name) | sed -e "s/4-train-save-ac8f7-//g")
+                      workspace_dest=/workspace/${workspace_dir}/artifacts/4-train-save-ac8f7/$(context.taskRun.name)
+                      artifact_name=$(basename $2)
+
+                      aws_cp() {
+
+                        aws s3 --endpoint https://minio-s3-fraud-detection.apps.aisrhods-wx.8goc.p1.openshiftapps.com cp $1.tgz s3://pipeline-artifacts/artifacts/$PIPELINERUN/$PIPELINETASK/$1.tgz
+
+                      }
+
+                      if [ -f "$workspace_dest/$artifact_name" ]; then
+                          echo sending to: ${workspace_dest}/${artifact_name}
+                          tar -cvzf $1.tgz -C ${workspace_dest} ${artifact_name}
+                          aws_cp $1
+                      elif [ -f "$2" ]; then
+                          tar -cvzf $1.tgz -C $(dirname $2) ${artifact_name}
+                          aws_cp $1
+                      else
+                          echo "$2 file does not exist. Skip artifact tracking for $1"
+                      fi
+                  }
+
+                  push_log() {
+                      cat /var/log/containers/$PODNAME*$NAMESPACE*step-main*.log > step-main.log
+                      push_artifact main-log step-main.log
+                  }
+
+                  strip_eof() {
+                      if [ -f "$2" ]; then
+                          awk 'NF' $2 | head -c -1 > $1_temp_save && cp $1_temp_save $2
+                      fi
+                  }
+
+                  push_artifact "mlpipeline-metrics"
+                  "/tmp/mlpipeline-metrics.json"
+
+                  push_artifact "mlpipeline-ui-metadata"
+                  "/tmp/mlpipeline-ui-metadata.json"
+
+                  strip_eof mlpipeline-metrics /tmp/mlpipeline-metrics.json
+
+                  strip_eof mlpipeline-ui-metadata
+                  /tmp/mlpipeline-ui-metadata.json
+              command:
+                - sh
+                - '-c'
+              computeResources: {}
+              env:
+                - name: ARTIFACT_BUCKET
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''tekton.dev/artifact_bucket'']'
+                - name: ARTIFACT_ENDPOINT
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''tekton.dev/artifact_endpoint'']'
+                - name: ARTIFACT_ENDPOINT_SCHEME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: >-
+                        metadata.annotations['tekton.dev/artifact_endpoint_scheme']
+                - name: ARTIFACT_ITEMS
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.annotations[''tekton.dev/artifact_items'']'
+                - name: PIPELINETASK
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.labels[''tekton.dev/pipelineTask'']'
+                - name: PIPELINERUN
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: 'metadata.labels[''tekton.dev/pipelineRun'']'
+                - name: PODNAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.name
+                - name: NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.namespace
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      key: accesskey
+                      name: mlpipeline-minio-artifact
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      key: secretkey
+                      name: mlpipeline-minio-artifact
+                - name: ARCHIVE_LOGS
+                  value: 'false'
+                - name: TRACK_ARTIFACTS
+                  value: 'true'
+                - name: STRIP_EOF
+                  value: 'true'
+              image: >-
+                registry.redhat.io/rhoai/odh-ml-pipelines-artifact-manager-rhel8@sha256:83248106ac34fb8b9a17fc372f7b6172ef224b79a2627add9e97c7551b2da444
+              name: copy-artifacts
+              volumeMounts:
+                - mountPath: /tmp
+                  name: mlpipeline-metrics
+          volumes:
+            - emptyDir: {}
+              name: mlpipeline-metrics
+  startTime: '2024-02-23T14:08:09Z'

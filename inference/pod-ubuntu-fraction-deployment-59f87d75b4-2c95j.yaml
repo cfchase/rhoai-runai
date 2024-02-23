@@ -1,0 +1,348 @@
+﻿kind: Pod
+apiVersion: v1
+metadata:
+  generateName: ubuntu-fraction-deployment-59f87d75b4-
+  annotations:
+    openshift.io/scc: runai-jupyter-notebook
+    pod-group-name: >-
+      pg-ubuntu-fraction-deployment-59f87d75b4-2c95j-b8d87ecf-b28c-4059-880a-d1bce33b0a2a
+    runai-allocated-gpu-memory: '5757'
+    gpu-fraction: '0.25'
+    runai-job-id: b8d87ecf-b28c-4059-880a-d1bce33b0a2a
+    k8s.ovn.org/pod-networks: >-
+      {"default":{"ip_addresses":["10.128.192.246/23"],"mac_address":"0a:58:0a:80:c0:f6","gateway_ips":["10.128.192.1"],"ip_address":"10.128.192.246/23","gateway_ip":"10.128.192.1"}}
+    runai-calculated-status: Running
+    runai-allocated-gpus: '0.25'
+    runai-allocated-mig-gpus: '0'
+    received-resource-type: Fraction
+    k8s.v1.cni.cncf.io/network-status: |-
+      [{
+          "name": "ovn-kubernetes",
+          "interface": "eth0",
+          "ips": [
+              "10.128.192.246"
+          ],
+          "mac": "0a:58:0a:80:c0:f6",
+          "default": true,
+          "dns": {}
+      }]
+    runai-node: ip-10-0-151-101.ec2.internal
+  resourceVersion: '476945922'
+  name: ubuntu-fraction-deployment-59f87d75b4-2c95j
+  uid: b8d87ecf-b28c-4059-880a-d1bce33b0a2a
+  creationTimestamp: '2024-02-20T21:30:42Z'
+  managedFields:
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-20T21:30:42Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:gpu-fraction': {}
+          'f:generateName': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:pod-template-hash': {}
+          'f:ownerReferences':
+            .: {}
+            'k:{"uid":"6730acf0-bb04-4723-beb4-210b79b55771"}': {}
+        'f:spec':
+          'f:containers':
+            'k:{"name":"ubuntu"}':
+              .: {}
+              'f:command': {}
+              'f:image': {}
+              'f:imagePullPolicy': {}
+              'f:name': {}
+              'f:resources': {}
+              'f:terminationMessagePath': {}
+              'f:terminationMessagePolicy': {}
+          'f:dnsPolicy': {}
+          'f:enableServiceLinks': {}
+          'f:restartPolicy': {}
+          'f:schedulerName': {}
+          'f:securityContext': {}
+          'f:terminationGracePeriodSeconds': {}
+    - manager: manager
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-20T21:30:43Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:pod-group-name': {}
+            'f:runai-job-id': {}
+    - manager: ip-10-0-211-201
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-20T21:31:09Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:k8s.ovn.org/pod-networks': {}
+    - manager: kube-batch
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-20T21:31:09Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:received-resource-type': {}
+            'f:runai-node': {}
+          'f:labels':
+            'f:runai-gpu-group': {}
+    - manager: multus
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-20T21:31:10Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:k8s.v1.cni.cncf.io/network-status': {}
+      subresource: status
+    - manager: kubelet
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-20T21:31:13Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:conditions':
+            'k:{"type":"ContainersReady"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Initialized"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Ready"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+          'f:containerStatuses': {}
+          'f:hostIP': {}
+          'f:phase': {}
+          'f:podIP': {}
+          'f:podIPs':
+            .: {}
+            'k:{"ip":"10.128.192.246"}':
+              .: {}
+              'f:ip': {}
+          'f:startTime': {}
+      subresource: status
+    - manager: status-updater
+      operation: Update
+      apiVersion: v1
+      time: '2024-02-20T21:31:13Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:runai-allocated-gpu-memory': {}
+            'f:runai-allocated-gpus': {}
+            'f:runai-allocated-mig-gpus': {}
+            'f:runai-calculated-status': {}
+  namespace: runai-cchase
+  ownerReferences:
+    - apiVersion: apps/v1
+      kind: ReplicaSet
+      name: ubuntu-fraction-deployment-59f87d75b4
+      uid: 6730acf0-bb04-4723-beb4-210b79b55771
+      controller: true
+      blockOwnerDeletion: true
+  labels:
+    app: ubuntu
+    pod-template-hash: 59f87d75b4
+    project: cchase
+    runai-gpu-group: 98d568bd-94d5-4f35-98d5-83cef42271d2
+spec:
+  restartPolicy: Always
+  serviceAccountName: default
+  imagePullSecrets:
+    - name: default-dockercfg-5fdw5
+  priority: 0
+  schedulerName: runai-scheduler
+  enableServiceLinks: true
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: runai/node-pool
+                operator: DoesNotExist
+  terminationGracePeriodSeconds: 30
+  preemptionPolicy: PreemptLowerPriority
+  nodeName: ip-10-0-151-101.ec2.internal
+  securityContext:
+    seLinuxOptions:
+      level: 's0:c36,c10'
+  containers:
+    - resources:
+        requests:
+          cpu: 25m
+          memory: '26214400'
+      terminationMessagePath: /dev/termination-log
+      name: ubuntu
+      command:
+        - sleep
+        - '123456'
+      env:
+        - name: RUNAI_GPU_MEMORY_REQUEST
+          value: '0.25'
+        - name: RUNAI_GPU_MEMORY_LIMIT
+          value: '0.25'
+        - name: NVIDIA_VISIBLE_DEVICES
+          valueFrom:
+            configMapKeyRef:
+              name: ubuntu-fraction-deployment-59f87d75b4-845q2b2-runai-sh-gpu
+              key: RUNAI-VISIBLE-DEVICES
+        - name: RUNAI_NUM_OF_GPUS
+          valueFrom:
+            configMapKeyRef:
+              name: ubuntu-fraction-deployment-59f87d75b4-845q2b2-runai-sh-gpu
+              key: RUNAI_NUM_OF_GPUS
+        - name: jobUUID
+          value: 6730acf0-bb04-4723-beb4-210b79b55771
+        - name: JOB_UUID
+          value: 6730acf0-bb04-4723-beb4-210b79b55771
+        - name: jobName
+          value: ubuntu-fraction-deployment-59f87d75b4
+        - name: JOB_NAME
+          value: ubuntu-fraction-deployment-59f87d75b4
+        - name: reporterGatewayURL
+          value: 'runai-prometheus-pushgateway.runai.svc.cluster.local:9091'
+        - name: REPORTER_GATEWAY_URL
+          value: 'runai-prometheus-pushgateway.runai.svc.cluster.local:9091'
+        - name: podUUID
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.uid
+        - name: POD_UUID
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.uid
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+      securityContext:
+        runAsUser: 1000
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false
+      imagePullPolicy: Always
+      volumeMounts:
+        - name: kube-api-access-t8f95
+          readOnly: true
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        - name: ubuntu-fraction-deployment-59f87d75b4-845q2b2-runai-sh-gpu-vol
+          readOnly: true
+          mountPath: /etc/ld.so.preload
+          subPath: ld.so.preload-key
+        - name: ubuntu-fraction-deployment-59f87d75b4-845q2b2-runai-sh-gpu-vol
+          readOnly: true
+          mountPath: /etc/runai.d/memory
+          subPath: config
+        - name: ubuntu-fraction-deployment-59f87d75b4-845q2b2-runai-sh-gpu-vol
+          readOnly: true
+          mountPath: /etc/runai.d/pod_uuid
+          subPath: pod-uuid
+      terminationMessagePolicy: File
+      image: ubuntu
+  serviceAccount: default
+  volumes:
+    - name: kube-api-access-t8f95
+      projected:
+        sources:
+          - serviceAccountToken:
+              expirationSeconds: 3607
+              path: token
+          - configMap:
+              name: kube-root-ca.crt
+              items:
+                - key: ca.crt
+                  path: ca.crt
+          - downwardAPI:
+              items:
+                - path: namespace
+                  fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+          - configMap:
+              name: openshift-service-ca.crt
+              items:
+                - key: service-ca.crt
+                  path: service-ca.crt
+        defaultMode: 420
+    - name: ubuntu-fraction-deployment-59f87d75b4-845q2b2-runai-sh-gpu-vol
+      configMap:
+        name: ubuntu-fraction-deployment-59f87d75b4-845q2b2-runai-sh-gpu
+        defaultMode: 420
+  dnsPolicy: ClusterFirst
+  tolerations:
+    - key: node.kubernetes.io/not-ready
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
+    - key: node.kubernetes.io/unreachable
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
+    - key: node.kubernetes.io/memory-pressure
+      operator: Exists
+      effect: NoSchedule
+status:
+  phase: Running
+  conditions:
+    - type: Initialized
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2024-02-20T21:31:09Z'
+    - type: Ready
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2024-02-20T21:31:13Z'
+    - type: ContainersReady
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2024-02-20T21:31:13Z'
+    - type: PodScheduled
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2024-02-20T21:31:09Z'
+  hostIP: 10.0.151.101
+  podIP: 10.128.192.246
+  podIPs:
+    - ip: 10.128.192.246
+  startTime: '2024-02-20T21:31:09Z'
+  containerStatuses:
+    - restartCount: 0
+      started: true
+      ready: true
+      name: ubuntu
+      state:
+        running:
+          startedAt: '2024-02-20T21:31:12Z'
+      imageID: >-
+        docker.io/library/ubuntu@sha256:81bba8d1dde7fc1883b6e95cd46d6c9f4874374f2b360c8db82620b33f6b5ca1
+      image: 'docker.io/library/ubuntu:latest'
+      lastState: {}
+      containerID: 'cri-o://3babd039d6ceb9efc80fbf2abbc6816027b0698324720649c4bea5f3b3e980ee'
+  qosClass: Burstable

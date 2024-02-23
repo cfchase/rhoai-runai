@@ -1,0 +1,254 @@
+﻿kind: Deployment
+apiVersion: apps/v1
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: '1'
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"labels":{"app":"ds-pipeline-persistenceagent-pipelines-definition","component":"data-science-pipelines","dspa":"pipelines-definition"},"name":"ds-pipeline-persistenceagent-pipelines-definition","namespace":"fraud-detection","ownerReferences":[{"apiVersion":"datasciencepipelinesapplications.opendatahub.io/v1alpha1","blockOwnerDeletion":true,"controller":true,"kind":"DataSciencePipelinesApplication","name":"pipelines-definition","uid":"e9b6de73-b1cf-422e-b6c9-1ba93d900075"}]},"spec":{"selector":{"matchLabels":{"app":"ds-pipeline-persistenceagent-pipelines-definition","component":"data-science-pipelines","dspa":"pipelines-definition"}},"template":{"metadata":{"annotations":{"cluster-autoscaler.kubernetes.io/safe-to-evict":"true"},"labels":{"app":"ds-pipeline-persistenceagent-pipelines-definition","component":"data-science-pipelines","dspa":"pipelines-definition"}},"spec":{"containers":[{"command":["persistence_agent","--logtostderr=true","--ttlSecondsAfterWorkflowFinish=86400","--numWorker=2","--mlPipelineAPIServerName=ds-pipeline-pipelines-definition","--namespace=fraud-detection","--mlPipelineServiceHttpPort=8888","--mlPipelineServiceGRPCPort=8887"],"env":[{"name":"NAMESPACE","value":"fraud-detection"}],"image":"registry.redhat.io/rhoai/odh-ml-pipelines-persistenceagent-rhel8@sha256:75621c362fcbf05e1db0dcdc158e48ae9f39174c5f19dce33151d7ccb712bd17","imagePullPolicy":"IfNotPresent","livenessProbe":{"exec":{"command":["test","-x","persistence_agent"]},"initialDelaySeconds":30,"periodSeconds":5,"timeoutSeconds":2},"name":"ds-pipeline-persistenceagent","readinessProbe":{"exec":{"command":["test","-x","persistence_agent"]},"initialDelaySeconds":3,"periodSeconds":5,"timeoutSeconds":2},"resources":{"limits":{"cpu":"250m","memory":"1Gi"},"requests":{"cpu":"120m","memory":"500Mi"}}}],"serviceAccountName":"ds-pipeline-persistenceagent-pipelines-definition"}}}}
+    manifestival: new
+  resourceVersion: '460594811'
+  name: ds-pipeline-persistenceagent-pipelines-definition
+  uid: 2aa288fb-8c95-4002-b126-299dc9874c04
+  creationTimestamp: '2024-02-14T18:50:43Z'
+  generation: 2
+  managedFields:
+    - manager: manager
+      operation: Update
+      apiVersion: apps/v1
+      time: '2024-02-14T18:50:45Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+            'f:manifestival': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:component': {}
+            'f:dspa': {}
+          'f:ownerReferences':
+            .: {}
+            'k:{"uid":"e9b6de73-b1cf-422e-b6c9-1ba93d900075"}': {}
+        'f:spec':
+          'f:progressDeadlineSeconds': {}
+          'f:replicas': {}
+          'f:revisionHistoryLimit': {}
+          'f:selector': {}
+          'f:strategy':
+            'f:rollingUpdate':
+              .: {}
+              'f:maxSurge': {}
+              'f:maxUnavailable': {}
+            'f:type': {}
+          'f:template':
+            'f:metadata':
+              'f:annotations':
+                .: {}
+                'f:cluster-autoscaler.kubernetes.io/safe-to-evict': {}
+              'f:labels':
+                .: {}
+                'f:app': {}
+                'f:component': {}
+                'f:dspa': {}
+            'f:spec':
+              'f:containers':
+                'k:{"name":"ds-pipeline-persistenceagent"}':
+                  'f:image': {}
+                  'f:terminationMessagePolicy': {}
+                  .: {}
+                  'f:resources':
+                    .: {}
+                    'f:limits':
+                      .: {}
+                      'f:cpu': {}
+                      'f:memory': {}
+                    'f:requests':
+                      .: {}
+                      'f:cpu': {}
+                      'f:memory': {}
+                  'f:command': {}
+                  'f:livenessProbe':
+                    .: {}
+                    'f:exec':
+                      .: {}
+                      'f:command': {}
+                    'f:failureThreshold': {}
+                    'f:initialDelaySeconds': {}
+                    'f:periodSeconds': {}
+                    'f:successThreshold': {}
+                    'f:timeoutSeconds': {}
+                  'f:env':
+                    .: {}
+                    'k:{"name":"NAMESPACE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                  'f:readinessProbe':
+                    .: {}
+                    'f:exec':
+                      .: {}
+                      'f:command': {}
+                    'f:failureThreshold': {}
+                    'f:initialDelaySeconds': {}
+                    'f:periodSeconds': {}
+                    'f:successThreshold': {}
+                    'f:timeoutSeconds': {}
+                  'f:terminationMessagePath': {}
+                  'f:imagePullPolicy': {}
+                  'f:name': {}
+              'f:dnsPolicy': {}
+              'f:restartPolicy': {}
+              'f:schedulerName': {}
+              'f:securityContext': {}
+              'f:serviceAccount': {}
+              'f:serviceAccountName': {}
+              'f:terminationGracePeriodSeconds': {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: apps/v1
+      time: '2024-02-14T18:51:04Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:deployment.kubernetes.io/revision': {}
+        'f:status':
+          'f:availableReplicas': {}
+          'f:conditions':
+            .: {}
+            'k:{"type":"Available"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Progressing"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+          'f:observedGeneration': {}
+          'f:readyReplicas': {}
+          'f:replicas': {}
+          'f:updatedReplicas': {}
+      subresource: status
+  namespace: fraud-detection
+  ownerReferences:
+    - apiVersion: datasciencepipelinesapplications.opendatahub.io/v1alpha1
+      kind: DataSciencePipelinesApplication
+      name: pipelines-definition
+      uid: e9b6de73-b1cf-422e-b6c9-1ba93d900075
+      controller: true
+      blockOwnerDeletion: true
+  labels:
+    app: ds-pipeline-persistenceagent-pipelines-definition
+    component: data-science-pipelines
+    dspa: pipelines-definition
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ds-pipeline-persistenceagent-pipelines-definition
+      component: data-science-pipelines
+      dspa: pipelines-definition
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ds-pipeline-persistenceagent-pipelines-definition
+        component: data-science-pipelines
+        dspa: pipelines-definition
+      annotations:
+        cluster-autoscaler.kubernetes.io/safe-to-evict: 'true'
+    spec:
+      containers:
+        - resources:
+            limits:
+              cpu: 250m
+              memory: 1Gi
+            requests:
+              cpu: 120m
+              memory: 500Mi
+          readinessProbe:
+            exec:
+              command:
+                - test
+                - '-x'
+                - persistence_agent
+            initialDelaySeconds: 3
+            timeoutSeconds: 2
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: /dev/termination-log
+          name: ds-pipeline-persistenceagent
+          command:
+            - persistence_agent
+            - '--logtostderr=true'
+            - '--ttlSecondsAfterWorkflowFinish=86400'
+            - '--numWorker=2'
+            - '--mlPipelineAPIServerName=ds-pipeline-pipelines-definition'
+            - '--namespace=fraud-detection'
+            - '--mlPipelineServiceHttpPort=8888'
+            - '--mlPipelineServiceGRPCPort=8887'
+          livenessProbe:
+            exec:
+              command:
+                - test
+                - '-x'
+                - persistence_agent
+            initialDelaySeconds: 30
+            timeoutSeconds: 2
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+          env:
+            - name: NAMESPACE
+              value: fraud-detection
+          imagePullPolicy: IfNotPresent
+          terminationMessagePolicy: File
+          image: >-
+            registry.redhat.io/rhoai/odh-ml-pipelines-persistenceagent-rhel8@sha256:75621c362fcbf05e1db0dcdc158e48ae9f39174c5f19dce33151d7ccb712bd17
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      serviceAccountName: ds-pipeline-persistenceagent-pipelines-definition
+      serviceAccount: ds-pipeline-persistenceagent-pipelines-definition
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+status:
+  observedGeneration: 2
+  replicas: 1
+  updatedReplicas: 1
+  readyReplicas: 1
+  availableReplicas: 1
+  conditions:
+    - type: Available
+      status: 'True'
+      lastUpdateTime: '2024-02-14T18:51:04Z'
+      lastTransitionTime: '2024-02-14T18:51:04Z'
+      reason: MinimumReplicasAvailable
+      message: Deployment has minimum availability.
+    - type: Progressing
+      status: 'True'
+      lastUpdateTime: '2024-02-14T18:51:04Z'
+      lastTransitionTime: '2024-02-14T18:50:43Z'
+      reason: NewReplicaSetAvailable
+      message: >-
+        ReplicaSet
+        "ds-pipeline-persistenceagent-pipelines-definition-7c97fcfdfd" has
+        successfully progressed.

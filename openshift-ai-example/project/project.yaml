@@ -1,0 +1,12 @@
+kind: Project
+apiVersion: project.openshift.io/v1
+metadata:
+  name: fraud-detection
+  labels:
+    kubernetes.io/metadata.name: fraud-detection
+    opendatahub.io/dashboard: 'true'
+  annotations:
+    openshift.io/description: ''
+    openshift.io/display-name: Fraud Detection
+    openshift.io/requester: cchase@redhat.com
+

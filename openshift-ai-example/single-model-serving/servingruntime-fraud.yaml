@@ -1,0 +1,96 @@
+﻿apiVersion: serving.kserve.io/v1alpha1
+kind: ServingRuntime
+metadata:
+  annotations:
+    opendatahub.io/accelerator-name: ''
+    opendatahub.io/template-display-name: OpenVINO Model Server
+    opendatahub.io/template-name: kserve-ovms
+    openshift.io/display-name: fraud
+  resourceVersion: '460687794'
+  name: fraud
+  uid: 5be07827-79a2-40bf-b65a-42ef14b9492e
+  creationTimestamp: '2024-02-14T19:40:43Z'
+  generation: 1
+  managedFields:
+    - apiVersion: serving.kserve.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:opendatahub.io/accelerator-name': {}
+            'f:opendatahub.io/template-display-name': {}
+            'f:opendatahub.io/template-name': {}
+            'f:openshift.io/display-name': {}
+          'f:labels':
+            .: {}
+            'f:opendatahub.io/dashboard': {}
+        'f:spec':
+          .: {}
+          'f:annotations':
+            .: {}
+            'f:prometheus.kserve.io/path': {}
+            'f:prometheus.kserve.io/port': {}
+          'f:containers': {}
+          'f:multiModel': {}
+          'f:protocolVersions': {}
+          'f:supportedModelFormats': {}
+          'f:volumes': {}
+      manager: unknown
+      operation: Update
+      time: '2024-02-14T19:40:43Z'
+  namespace: fraud-detection
+  labels:
+    opendatahub.io/dashboard: 'true'
+spec:
+  annotations:
+    prometheus.kserve.io/path: /metrics
+    prometheus.kserve.io/port: '8888'
+  containers:
+    - args:
+        - '--model_name={{.Name}}'
+        - '--port=8001'
+        - '--rest_port=8888'
+        - '--model_path=/mnt/models'
+        - '--file_system_poll_wait_seconds=0'
+        - '--grpc_bind_address=127.0.0.1'
+        - '--rest_bind_address=127.0.0.1'
+      image: 'quay.io/opendatahub/openvino_model_server:stable'
+      name: kserve-container
+      ports:
+        - containerPort: 8888
+          protocol: TCP
+      resources:
+        limits:
+          cpu: '2'
+          memory: 8Gi
+        requests:
+          cpu: '1'
+          memory: 4Gi
+      volumeMounts:
+        - mountPath: /dev/shm
+          name: shm
+  multiModel: false
+  protocolVersions:
+    - v2
+    - grpc-v2
+  supportedModelFormats:
+    - autoSelect: true
+      name: openvino_ir
+      version: opset11
+    - name: onnx
+      version: '1'
+    - autoSelect: true
+      name: tensorflow
+      version: '1'
+    - autoSelect: true
+      name: tensorflow
+      version: '2'
+    - autoSelect: true
+      name: paddle
+      version: '2'
+  volumes:
+    - emptyDir:
+        medium: Memory
+        sizeLimit: 2Gi
+      name: shm
