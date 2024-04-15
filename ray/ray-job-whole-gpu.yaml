@@ -31,7 +31,7 @@ spec:
         spec:
           containers:
             - name: ray-head
-              image: rayproject/ray-ml:2.6.3-gpu
+              image: rayproject/ray:2.9.3-gpu
               ports:
                 - containerPort: 6379
                   name: gcs-server

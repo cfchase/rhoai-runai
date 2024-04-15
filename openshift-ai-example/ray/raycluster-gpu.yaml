@@ -1,0 +1,83 @@
+﻿apiVersion: ray.io/v1
+kind: RayCluster
+metadata:
+  name: raycluster-kuberay
+  labels:
+    app.kubernetes.io/instance: raycluster
+    app.kubernetes.io/name: kuberay
+spec:
+  headGroupSpec:
+    rayStartParams:
+      dashboard-host: 0.0.0.0
+    serviceType: ClusterIP
+    template:
+      metadata:
+        annotations: {}
+        labels:
+          app.kubernetes.io/instance: raycluster
+          app.kubernetes.io/managed-by: Helm
+          app.kubernetes.io/name: kuberay
+          helm.sh/chart: ray-cluster-1.0.0
+      spec:
+        affinity: {}
+        containers:
+          - env: []
+            image: 'rayproject/ray:2.9.3-gpu'
+            imagePullPolicy: IfNotPresent
+            name: ray-head
+            resources:
+              limits:
+                cpu: '1'
+                memory: 2G
+              requests:
+                cpu: '1'
+                memory: 2G
+            securityContext: {}
+            volumeMounts:
+              - mountPath: /tmp/ray
+                name: log-volume
+        imagePullSecrets: []
+        nodeSelector: {}
+        tolerations: []
+        volumes:
+          - emptyDir: {}
+            name: log-volume
+  workerGroupSpecs:
+    - groupName: workergroup
+      maxReplicas: 2147483647
+      minReplicas: 0
+      rayStartParams: {}
+      replicas: 1
+      template:
+        metadata:
+          annotations: {}
+          labels:
+            app.kubernetes.io/instance: raycluster
+            app.kubernetes.io/managed-by: Helm
+            app.kubernetes.io/name: kuberay
+            helm.sh/chart: ray-cluster-1.0.0
+        spec:
+          affinity: {}
+          containers:
+            - env: []
+              image: 'rayproject/ray:2.9.3-gpu'
+              imagePullPolicy: IfNotPresent
+              name: ray-worker
+              resources:
+                limits:
+                  cpu: '1'
+                  memory: 1G
+                requests:
+                  cpu: '1'
+                  memory: 1G
+              securityContext: {}
+              volumeMounts:
+                - mountPath: /tmp/ray
+                  name: log-volume
+          imagePullSecrets: []
+          nodeSelector: {}
+          tolerations: []
+          volumes:
+            - emptyDir: {}
+              name: log-volume
+
